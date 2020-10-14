@@ -1,0 +1,7 @@
+#+AUTHOR: Simon Stoltze
+#+EMAIL: Simon.Stoltze@ufst.dk
+#+DATE: 2020-10-14
+#+OPTIONS: toc:nil title:nil author:nil email:nil date:nil creator:nil
+* Racket playground
+
+Small projects and one-offs that are not worth their own directory.

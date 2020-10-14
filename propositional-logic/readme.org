@@ -1,0 +1,6 @@
+#+AUTHOR: Simon Stoltze
+#+EMAIL: Simon.Stoltze@ufst.dk
+#+DATE: 2020-10-14
+#+OPTIONS: toc:nil title:nil author:nil email:nil date:nil creator:nil
+* Racket logic
+Blatantly copied from [[https://micahcantor.xyz/blog/logic-racket-parser]], to recall how parsing and lexing works in Racket.
