@@ -4,15 +4,24 @@
          "parser.rkt"
          racket/match)
 
-(provide (all-defined-out))
+(provide (except-out (all-defined-out)
+                     keep-symbol?))
+
+(define (keep-symbol? s)
+  (match s
+    [(or 'sentence 'negation 'atom) #t]
+    [_                              #f]))
 
 (define (simplify ast)
   (match ast
-    [(list 'sentence s)          (list 'sentence (simplify s))]
-    [(list 'negation s)          (list 'negation (simplify s))]
-    [(list 'atom s)              (list 'atom s)]
-    [(list symbol s)             (simplify s)]
-    [(list symbol expr ..2)      (cons symbol (map simplify expr))]))
+    ;; Preserve sentences, negations and atoms, since these are important
+    [(list (? keep-symbol? logic-expr)  statement) (list logic-expr (simplify statement))]
+    ;; Conjunctions, disjunctions, etc. can be thrown away if they only have a single part
+    [(list logic-expr statement)                   (simplify statement)]
+    ;; Otherwise, keep them but simplify the subexpressions
+    [(list logic-expr statements ..2)              (cons logic-expr (map simplify statements))]
+    ;; Keep unknowns
+    [_                                             ast]))
 
 (define (read-string s)
   (define stx (parse (tokenize (open-input-string s))))

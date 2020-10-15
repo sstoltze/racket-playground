@@ -4,8 +4,7 @@
          racket/match
          racket/list)
 
-;; TODO: Reduce this
-(provide (all-defined-out))
+(provide logic-eval)
 
 (define (logic-eval vars sentence)
   (define eval-with-vars (curry logic-eval vars))
