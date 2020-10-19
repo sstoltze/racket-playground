@@ -51,3 +51,6 @@
                  (succo n x)
                  (succo out z)
                  (pluso x m z))]))
+
+(define/peano (subtracto n m out)
+  (pluso m out n))
