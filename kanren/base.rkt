@@ -25,12 +25,12 @@
      (ext-s u v s)]
     [(var? walked-v)
      (ext-s v u s)]
-    [(and (binding? walked-u)
-          (binding? walked-v))
-     (printf "Unifying ~A -> ~A and ~A -> A" u walked-u v walked-v)
-     (define new-s (unify (binding-var walked-u) (binding-var walked-v) s))
+    ;; Unify a list by unifying cars and then unifying cdrs
+    [(and (pair? walked-u)
+          (pair? walked-v))
+     (define new-s (unify (car walked-u) (car walked-v) s))
      (and new-s
-          (unify (binding-value walked-u) (binding-value walked-v) new-s))]
+          (unify (cdr walked-u) (cdr walked-v) new-s))]
     [else
      (and (equal? walked-u walked-v)
           s)]))
