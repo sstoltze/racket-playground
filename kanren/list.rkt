@@ -25,3 +25,9 @@
                  (conso f r a)
                  (conso f rec out)
                  (appendo r b rec))]))
+
+(define (membero m l)
+  (conde [(firsto m l)]
+         [(fresh (r)
+                 (resto r l)
+                 (membero m r))]))

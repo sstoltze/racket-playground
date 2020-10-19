@@ -96,3 +96,13 @@
        (fresh (n m)
               (subtracto n 3 m)
               (congruent q (list n m)))))
+
+(define member-test
+  (run* (q)
+        (membero q (list 1 2 3))
+        (membero q (list 3 4 5 6))))
+
+(define member-test-2
+  (run* (q)
+        (membero q (list 1 2 3))
+        (membero q (list 4 5 6))))
