@@ -48,6 +48,10 @@
 (define (lookup-state s x)
   (lookup-binding (KanrenState-bindings s) x))
 
+(define (state-vars s)
+  (for/list [(i (in-range (KanrenState-next-id s)))]
+    (var i)))
+
 ;;;; Streams
 (define (unit s)
   (stream-add s mzero))

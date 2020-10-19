@@ -10,6 +10,25 @@
                              (congruent b 5)
                              (congruent b 6)))))))
 
+(define list-test
+  (call/empty-state
+   (fresh (q p b)
+          (congruent p q)
+          (congruent b 5)
+          (congruent p (list 1 2 3 b)))))
+
+(define append-test
+  (call/empty-state
+   (fresh (q p)
+          (appendo p q '(1 2 3)))))
+
+(define second-append-test
+  (take-all
+   (call/empty-state
+    (fresh (q)
+           (fresh (x y)
+                  (appendo x y '(1 2 3 4 5))
+                  (congruent q (list x y)))))))
 
 (define many-vars
   (call/empty-state
@@ -36,3 +55,16 @@
             (congruent q p)
             (congruent p 5))
            (congruent q 4)))))
+
+(define run-test
+  (run* (q x y)
+        (appendo x y '(1 2 3 4 5))
+        (congruent q (list x y))))
+
+(define run-all-test
+  (run/all* (x y)
+            (appendo x y '(1 2 3 4 5))))
+
+(define reify-test
+  (run* (x y)
+        (congruent x y)))
