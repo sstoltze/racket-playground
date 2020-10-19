@@ -2,7 +2,9 @@
 
 (require "types.rkt"
          "base.rkt"
-         "utility.rkt")
+         "utility.rkt"
+         (for-syntax syntax/parse
+                     racket/base))
 
 (provide (all-defined-out))
 
@@ -19,31 +21,33 @@
              (congruent n (succ q)))))
 
 (define (to-peano k)
-  (if (equal? k zero)
-      zero
-      (succ (to-peano (sub1 k)))))
+  (if (number? k)
+      (if (equal? k zero)
+          zero
+          (succ (to-peano (sub1 k))))
+      k))
 
 (define (from-peano n)
   (if (zero? n)
       0
       (add1 (from-peano (car n)))))
 
-(define (succo n m)
-  (cond
-    [(number? n) (succo (to-peano n) m)]
-    [(number? m) (succo n (to-peano m))]
-    [else (congruent n (succ m))]))
+(define-syntax (define/peano stx)
+  (syntax-parse stx
+    [(_ (f x ...) expr ...)
+     #'(define (f x ...)
+         (let [(x (to-peano x)) ...]
+           expr ...))]))
+
+(define/peano (succo n m)
+  (congruent n (succ m)))
 
 (define (zeroo n)
   (congruent n zero))
 
-(define (pluso n m out)
-  (cond
-    [(number? n)   (pluso (to-peano n) m out)]
-    [(number? m)   (pluso n (to-peano m) out)]
-    [(number? out) (pluso n m (to-peano out))]
-    [else          (conde [(zeroo n) (congruent m out)]
-                          [(fresh (x z)
-                                  (succo n x)
-                                  (succo out z)
-                                  (pluso x m z))])]))
+(define/peano (pluso n m out)
+  (conde [(zeroo n) (congruent m out)]
+         [(fresh (x z)
+                 (succo n x)
+                 (succo out z)
+                 (pluso x m z))]))
