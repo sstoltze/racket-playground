@@ -29,3 +29,8 @@
        (fresh (n m)
               (subtracto n 3 m)
               (congruent q (list n m)))))
+
+;; Multiplication takes forever.
+(define mult-test
+  (run 1 (q)
+       (multo 2 3 q)))

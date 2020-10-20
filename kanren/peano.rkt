@@ -45,6 +45,9 @@
 (define (zeroo n)
   (congruent n zero))
 
+(define (oneo n)
+  (congruent n (succ 0)))
+
 (define/peano (pluso n m out)
   (conde [(zeroo n) (congruent m out)]
          [(fresh (x z)
@@ -54,3 +57,18 @@
 
 (define/peano (subtracto n m out)
   (pluso m out n))
+
+(define/peano (multo n m out)
+  (conde [(zeroo n) (zeroo out)]
+         [(zeroo m) (zeroo out)]
+         [(oneo n) (congruent m out)]
+         [(oneo m) (congruent n out)]
+         [(fresh (x z)
+                 ;; n = x + 1, z + m = out
+                 ;; =>
+                 ;; x * m + m = n * m = out = z + m
+                 ;; <=>
+                 ;; x * m = z
+                 (succo n x)
+                 (pluso z m out)
+                 (multo x m z))]))
