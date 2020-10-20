@@ -1,6 +1,6 @@
 #lang racket/base
 
-(require "kanren.rkt")
+(require "../kanren.rkt")
 
 (define a-and-b
   (call/empty-state

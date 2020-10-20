@@ -1,6 +1,6 @@
 #lang racket/base
 
-(require "kanren.rkt")
+(require "../kanren.rkt")
 
 (define member-test
   (run* (q)
