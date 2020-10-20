@@ -40,3 +40,9 @@
 (define (reify-state/all s)
   (for/list [(v (in-list (state-vars s)))]
     (list (reify-name v) (reify-state/var v s))))
+
+(define (reify-format/all f states)
+  (map (lambda (vars)
+         (map (lambda (v) (list (car v) (f (cadr v))))
+              vars))
+       states))

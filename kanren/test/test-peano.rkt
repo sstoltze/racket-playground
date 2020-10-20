@@ -40,17 +40,23 @@
 
 ;; Multiplication takes forever.
 (define mult-test
-  (map from-peano (run 2 (q)
-                       (multo 4 3 q))))
+  (map from-peano
+       (run 1 (q)
+            (multo 4 3 q))))
 
 (define mult-test-2
-  (map from-peano (run/all* (q)
-                        (multo q 3 3))))
+  (reify-format/all from-peano
+                    (run/all* (q)
+                              (multo q 3 3))))
 
 (define mult-test-3
-  (map from-peano (run 4 (q)
-                       (multo q 3 0))))
+  (map from-peano
+       (run* (q)
+             (multo q 3 0))))
 
 (define mult-test-4
-  (run/all 4 (q p)
-           (multo q p 6)))
+  (map (lambda (l) (list (from-peano (car l)) (from-peano (cadr l))))
+       (run 6 (q)
+            (fresh (x y)
+                   (multo x y 95)
+                   (congruent q (list x y))))))
