@@ -18,6 +18,14 @@
                (congruent n 5)
                (succo q n))))
 
+(define succ-test-2
+  (run* (q)
+        (succo 5 4)))
+
+(define succ-test-3
+  (run* (q)
+        (succo 5 3)))
+
 (define anoter-plus-test
   (run 5 (q)
        (fresh (n m)
@@ -32,5 +40,17 @@
 
 ;; Multiplication takes forever.
 (define mult-test
-  (run 1 (q)
-       (multo 2 3 q)))
+  (map from-peano (run 2 (q)
+                       (multo 4 3 q))))
+
+(define mult-test-2
+  (map from-peano (run/all* (q)
+                        (multo q 3 3))))
+
+(define mult-test-3
+  (map from-peano (run 4 (q)
+                       (multo q 3 0))))
+
+(define mult-test-4
+  (run/all 4 (q p)
+           (multo q p 6)))

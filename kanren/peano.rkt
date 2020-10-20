@@ -16,9 +16,9 @@
         [else          (list 'S n)]))
 
 (define (numbero n)
-  (or (congruent n zero)
-      (fresh (q)
-             (congruent n (succ q)))))
+  (disj+ (congruent n zero)
+         (fresh (q)
+                (congruent n (succ q)))))
 
 (define (to-peano k)
   (if (number? k)
@@ -27,10 +27,17 @@
           (succ (to-peano (sub1 k))))
       k))
 
+(define (peano? n)
+  (or (equal? n zero)
+      (and (list? n)
+           (equal? (car n) 'S))))
+
 (define (from-peano n)
-  (if (zero? n)
-      0
-      (add1 (from-peano (car n)))))
+  (if (peano? n)
+      (if (equal? n zero)
+          0
+          (add1 (from-peano (cadr n))))
+      n))
 
 (define-syntax (define/peano stx)
   (syntax-parse stx
@@ -48,6 +55,10 @@
 (define (oneo n)
   (congruent n (succ 0)))
 
+(define (poso n)
+  (fresh (k)
+         (succo n k)))
+
 (define/peano (pluso n m out)
   (conde [(zeroo n) (congruent m out)]
          [(fresh (x z)
@@ -59,10 +70,11 @@
   (pluso m out n))
 
 (define/peano (multo n m out)
-  (conde [(zeroo n) (zeroo out)]
-         [(zeroo m) (zeroo out)]
-         [(oneo n) (congruent m out)]
-         [(oneo m) (congruent n out)]
+  (conde [(zeroo out) ;; 0 * m = n * 0 = 0
+          (disj+ (zeroo m)
+                 (zeroo n))]
+         [(oneo n) (congruent m out)] ;; 1 * m = m
+         [(oneo m) (congruent n out)] ;; n * 1 = n
          [(fresh (x z)
                  ;; n = x + 1, z + m = out
                  ;; =>
