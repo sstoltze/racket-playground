@@ -55,13 +55,18 @@
 (define (oneo n)
   (congruent n (succ 0)))
 
-(define (poso n)
+(define (positiveo n)
   (fresh (k)
          (succo n k)))
 
 (define/peano (pluso n m out)
-  (conde [(zeroo n) (congruent m out)]
+  (conde [(zeroo n) (congruent m out)] ;; 0 + m = m
          [(fresh (x z)
+                 ;; n = x + 1, out = z + 1
+                 ;; =>
+                 ;; x + 1 + m = n + m = out = z + 1
+                 ;; <=>
+                 ;; x + m = z
                  (succo n x)
                  (succo out z)
                  (pluso x m z))]))

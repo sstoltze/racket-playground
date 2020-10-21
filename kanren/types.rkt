@@ -19,14 +19,40 @@
 (define var-id LVar-id)
 
 ;;;; Bindings
-(define empty-bindings (list))
+;; Lists
+(module binding-alist racket/base
+  (provide (all-defined-out))
+  (define empty-bindings (list))
 
-(define (extend-bindings bindings x v)
-  (cons (cons x v) bindings))
+  (define (extend-bindings bindings x v)
+    (cons (cons x v) bindings))
 
-(define (lookup-binding bindings x)
-  (assoc x bindings))
+  (define (lookup-binding bindings x)
+    (assoc x bindings))
 
+  (define has-binding? assoc))
+
+(module binding-hash racket/base
+  (provide (all-defined-out))
+  (require racket/hash)
+  (define empty-bindings (hash))
+
+  (define (extend-bindings bindings x v)
+    (hash-set bindings x v))
+
+  (define (lookup-binding bindings x)
+    (when (has-binding? bindings x)
+      (cons x (hash-ref bindings x))))
+
+  (define has-binding? hash-has-key?))
+
+(require 'binding-hash)
+(provide (all-from-out 'binding-hash))
+
+#;(require 'binding-alist)
+#;(provide (all-from-out 'binding-alist))
+
+;; A binding is a cons pair
 (define binding? pair?)
 (define binding-var car)
 (define binding-value cdr)
