@@ -3,4 +3,4 @@
 #+DATE: 2020-10-14
 #+OPTIONS: toc:nil title:nil author:nil email:nil date:nil creator:nil
 * Racket logic
-Blatantly copied from [[https://micahcantor.xyz/blog/logic-racket-parser]], to recall how parsing and lexing works in Racket.
+Blatantly copied (and afterwards adapted) from [[https://micahcantor.xyz/blog/logic-racket-parser]], to recall how parsing and lexing works in Racket. After working with and writing a [[http://webyrd.net/scheme-2013/papers/HemannMuKanren2013.pdf][μKanren]], this project has been expanded to also be able to search for solutions for propositions.
