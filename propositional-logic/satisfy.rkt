@@ -10,10 +10,17 @@
   (define vars (extract-vars prop))
   (parameterize ([current-namespace (make-base-namespace)])
     (namespace-require "../kanren/kanren.rkt")
-    (list vars (eval `(run* (q)
-                            (fresh ,vars
-                                   ,(to-kanren prop)
-                                   (congruent q ,(cons 'list vars))))))))
+    (kanren-join-vars vars
+                      (eval `(run* (q)
+                                   (fresh ,vars
+                                          ,(to-kanren prop)
+                                          (congruent q ,(cons 'list vars))))))))
+
+(define (kanren-join-vars vars solutions)
+  (for/list ([s (in-list solutions)])
+    (for/list ([var (in-list vars)]
+               [val (in-list s)])
+      (cons var val))))
 
 (define (to-kanren prop)
   (kanren-eval-to prop #t))
