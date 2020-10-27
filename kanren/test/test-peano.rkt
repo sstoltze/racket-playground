@@ -1,6 +1,6 @@
 #lang racket/base
 
-(require "../kanren.rkt")
+(require "../main.rkt")
 
 (define plus-test
   (run* (n)

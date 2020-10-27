@@ -1,15 +1,15 @@
 #lang racket/base
 
-(require "../kanren/kanren.rkt"
+(require "../kanren/main.rkt"
          "utility.rkt"
          racket/match)
 
 (provide satisfy)
 
 (define (satisfy prop)
-  (define vars (extract-vars prop))
+  (define vars (extract-variables prop))
   (parameterize ([current-namespace (make-base-namespace)])
-    (namespace-require "../kanren/kanren.rkt")
+    (namespace-require "../kanren/main.rkt")
     (kanren-join-vars vars
                       (eval `(run* (q)
                                    (fresh ,vars
