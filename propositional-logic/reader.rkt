@@ -23,6 +23,6 @@
     ;; Keep unknowns
     [_                                             ast]))
 
-(define (read-string s)
+(define (string->proposition s)
   (define stx (parse (tokenize (open-input-string s))))
   (simplify (syntax->datum stx)))

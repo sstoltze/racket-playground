@@ -1,0 +1,49 @@
+#lang racket/base
+
+(require "../kanren/kanren.rkt"
+         "utility.rkt"
+         racket/match)
+
+(provide satisfy)
+
+(define (satisfy prop)
+  (define vars (extract-vars prop))
+  (parameterize ([current-namespace (make-base-namespace)])
+    (namespace-require "../kanren/kanren.rkt")
+    (list vars (eval `(run* (q)
+                            (fresh ,vars
+                                   ,(to-kanren prop)
+                                   (congruent q ,(cons 'list vars))))))))
+
+(define (to-kanren prop)
+  (kanren-eval-to prop #t))
+
+(define (kanren-eval-to prop target)
+  (match prop
+    [(list 'sentence s)         (kanren-eval-to s target)]
+    [(list 'biimplication a b)  (if target
+                                    `(conde [,(kanren-eval-to a #t)
+                                             ,(kanren-eval-to b #t)]
+                                            [,(kanren-eval-to a #f)
+                                             ,(kanren-eval-to b #f)])
+                                    `(conde [,(kanren-eval-to a #t)
+                                             ,(kanren-eval-to b #f)]
+                                            [,(kanren-eval-to a #f)
+                                             ,(kanren-eval-to b #t)]))]
+    [(list 'implication a b)    (if target
+                                    `(disj+ ,(kanren-eval-to a #f)
+                                            ,(kanren-eval-to b #t))
+                                    `(conj+ ,(kanren-eval-to a #t)
+                                            ,(kanren-eval-to b #f)))]
+    [(list 'conjunction as ...) (if target
+                                    (cons 'conj+ (map (lambda (a) (kanren-eval-to a #t))
+                                                      as))
+                                    (cons 'disj+ (map (lambda (a) (kanren-eval-to a #f))
+                                                      as)))]
+    [(list 'disjunction as ...) (if target
+                                    (cons 'disj+ (map (lambda (a) (kanren-eval-to a #t))
+                                                      as))
+                                    (cons 'conj+ (map (lambda (a) (kanren-eval-to a #f))
+                                                      as)))]
+    [(list 'negation a)         (kanren-eval-to a (not target))]
+    [(list 'atom a)             `(congruent ,(string->symbol a) ,target)]))

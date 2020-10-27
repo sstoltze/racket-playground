@@ -1,20 +1,27 @@
 #lang racket/base
 
 (require "reader.rkt"
-         "utility.rkt")
+         "utility.rkt"
+         "satisfy.rkt")
 
 (define vars (make-hash (list (cons "A" #t)
                               (cons "B" #f))))
 
-(read-string "A <-> B v C v D")
+(string->proposition "A <-> B v C v D")
 
-(read-string "~P ^ Q v P -> P v Q")
+(string->proposition "~P ^ Q v P -> P v Q")
 
-(read-string "(~P v P) ^ QB")
+(string->proposition "(~P v P) ^ QB")
 
-(read-string "Q -> A v B ^ C")
+(string->proposition "Q -> A v B ^ C")
 
-(logic-eval vars (read-string "A ->  B"))
-(logic-eval vars (read-string "A -> ~B"))
-(logic-eval vars (read-string "A v B"))
-(logic-eval vars (read-string "~A v B"))
+(extract-vars (string->proposition "Q -> A v B ^ C"))
+(satisfy (string->proposition "Q -> A v B ^ C"))
+
+(string->proposition "Q -> A")
+(satisfy (string->proposition "A v B ^ C"))
+
+(logic-eval vars (string->proposition "A ->  B"))
+(logic-eval vars (string->proposition "A -> ~B"))
+(logic-eval vars (string->proposition "A v B"))
+(logic-eval vars (string->proposition "~A v B"))

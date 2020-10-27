@@ -4,16 +4,17 @@
          racket/match
          racket/list)
 
-(provide logic-eval)
+(provide logic-eval
+         extract-vars)
 
 (define (logic-eval vars sentence)
   (define eval-with-vars (curry logic-eval vars))
   (match sentence
     [(list 'sentence s)         (eval-with-vars s)]
-    [(list 'biimplication a b)  (biimplication (eval-with-vars a) (eval-with-vars b))]
-    [(list 'implication a b)    (implication (eval-with-vars a) (eval-with-vars b))]
-    [(list 'disjunction as ...) (list-or (map eval-with-vars as))]
-    [(list 'conjunction as ...) (list-and (map eval-with-vars as))]
+    [(list 'biimplication a b)  (eval-biimplication (eval-with-vars a) (eval-with-vars b))]
+    [(list 'implication a b)    (eval-implication (eval-with-vars a) (eval-with-vars b))]
+    [(list 'disjunction as ...) (eval-or (map eval-with-vars as))]
+    [(list 'conjunction as ...) (eval-and (map eval-with-vars as))]
     [(list 'negation a)         (not (eval-with-vars a))]
     [(list 'atom a)             (hash-ref vars a)]))
 
@@ -24,15 +25,21 @@
                                (op (first lst) (recursive-op (rest lst)))))])
     recursive-op))
 
-(define list-or
+(define eval-or
   (apply-op (lambda (a b) (or a b)) #f))
 
-(define list-and
+(define eval-and
   (apply-op (lambda (a b) (and a b)) #t))
 
-(define (biimplication a b)
+(define (eval-biimplication a b)
   (or (and a b)
       (and (not a) (not b))))
 
-(define (implication a b)
+(define (eval-implication a b)
   (or b (not a)))
+
+(define (extract-vars prop)
+  (match prop
+    [(list 'sentence s) (extract-vars s)]
+    [(list 'atom a) (list (string->symbol a))]
+    [(list _ as ...) (append-map extract-vars as)]))
