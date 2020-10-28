@@ -17,22 +17,33 @@
     [(list 'negation a)         (not (eval-with-vars a))]
     [(list 'atom a)             (hash-ref vars a)]))
 
-(define (apply-op op default)
-  (letrec ([recursive-op (lambda (lst)
-                           (if (empty? lst)
-                               default
-                               (op (first lst) (recursive-op (rest lst)))))])
-    recursive-op))
+(define (eval-and lst)
+  (define filtered (remove* '(#t) lst))
+  (cond [(empty? filtered)    #t]
+        [(member #f filtered) #f]
+        [else                 (cons 'conjunction filtered)]))
 
-(define eval-or
-  (apply-op (lambda (a b) (or a b)) #f))
+(define (eval-or lst)
+  (define filtered (remove* '(#f) lst))
+  (cond [(empty? filtered)    #f]
+        [(member #t filtered) #t]
+        [else                 (cons 'dijunction filtered)]))
 
-(define eval-and
-  (apply-op (lambda (a b) (and a b)) #t))
+(define (true? a)
+  (equal? a #t))
+(define (false? a)
+  (equal? a #f))
 
 (define (eval-biimplication a b)
-  (or (and a b)
-      (and (not a) (not b))))
+  (eval-and (list (eval-implication a b)
+                  (eval-implication b a))))
 
 (define (eval-implication a b)
-  (or b (not a)))
+  (if (and (true? a)
+           (false? b))
+      #f
+      (or (false? a)
+          (true? b)
+          (list 'disjunction
+                (list 'negation a)
+                b))))

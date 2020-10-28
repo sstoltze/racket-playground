@@ -20,6 +20,7 @@
 (string->proposition "Q -> A")
 (satisfy (string->proposition "A v B ^ C"))
 
+(eval-proposition vars (string->proposition "A <-> B"))
 (eval-proposition vars (string->proposition "A ->  B"))
 (eval-proposition vars (string->proposition "A -> ~B"))
 (eval-proposition vars (string->proposition "A v B"))
