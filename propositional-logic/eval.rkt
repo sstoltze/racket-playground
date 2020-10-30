@@ -15,7 +15,7 @@
     [(list 'disjunction as ...) (eval-or (map eval-with-vars as))]
     [(list 'conjunction as ...) (eval-and (map eval-with-vars as))]
     [(list 'negation a)         (not (eval-with-vars a))]
-    [(list 'atom a)             (hash-ref vars a)]))
+    [(list 'atom a)             (hash-ref vars a (string->symbol a))]))
 
 (define (eval-and lst)
   (define filtered (remove* '(#t) lst))

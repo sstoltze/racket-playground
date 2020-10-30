@@ -36,3 +36,5 @@
 
 (for/list ([vars (in-list solutions)])
   (eval-proposition (solution-vars->strings vars) prop))
+
+(eval-proposition (hash) (string->proposition "A ^ (A -> B)"))
