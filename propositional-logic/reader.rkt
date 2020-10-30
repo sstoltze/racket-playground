@@ -9,7 +9,7 @@
 
 (define (keep-symbol? s)
   (match s
-    [(or 'sentence 'negation 'atom) #t]
+    [(or 'negation 'atom) #t]
     [_                              #f]))
 
 (define (simplify ast)
