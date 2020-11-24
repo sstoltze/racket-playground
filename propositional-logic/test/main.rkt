@@ -38,3 +38,9 @@
   (eval-proposition (solution-vars->strings vars) prop))
 
 (eval-proposition (hash) (string->proposition "A ^ (A -> B)"))
+
+(define prop1 (string->proposition "~(A v B)"))
+(define prop2 (string->proposition "~B ^ ~A"))
+(satisfy prop1)
+(satisfy prop2)
+(equivalent-propositions? prop1 prop2)

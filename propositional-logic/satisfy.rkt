@@ -1,9 +1,12 @@
 #lang racket/base
 
 (require "utility.rkt"
-         racket/match)
+         racket/match
+         racket/set
+         racket/string)
 
-(provide satisfy)
+(provide satisfy
+         equivalent-propositions?)
 
 (define (satisfy prop)
   (define vars (extract-variables prop))
@@ -14,6 +17,21 @@
                                    (fresh ,vars
                                           ,(to-kanren prop)
                                           (congruent q ,(cons 'list vars))))))))
+
+(define (equivalent-propositions? p q)
+  (set-empty? (set-symmetric-difference (map kanren-equivalent-solution (satisfy p))
+                                        (map kanren-equivalent-solution (satisfy q)))))
+
+;; Replace the symbols _.1, _.2, etc. in kanren solutions with 'any, and convert the list of variables to a set,
+;; for easy checking of equivalence
+(define (kanren-equivalent-solution l)
+  (for/set ([v l])
+    (match-define (cons var val) v)
+    (define updated-val (if (and (symbol? val)
+                                 (string-prefix? (symbol->string val) "_."))
+                            'any
+                            val))
+    (cons var updated-val)))
 
 (define (kanren-join-vars vars solutions)
   (for/list ([s (in-list solutions)])
