@@ -60,3 +60,8 @@
             (fresh (x y)
                    (multo x y 95)
                    (congruent q (list x y))))))
+
+(define <=->=-test
+  (run* (q)
+        (<=o q 5)
+        (>=o q 1)))

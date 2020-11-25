@@ -77,7 +77,7 @@
 (define/peano (greatero n m)
   (fresh (o)
          (positiveo o)
-         (subtracto m n o)))
+         (subtracto n m o)))
 
 (define >=o greatero)
 
