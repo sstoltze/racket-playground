@@ -9,13 +9,16 @@
 (define (conso f r out)
   (congruent out (cons f r)))
 
-(define (listo l)
-  (conde [(emptyo l)]
-         [(nonemptyo l)]))
+(define (emptyo x)
+  (congruent x '()))
 
 (define (nonemptyo l)
   (fresh (f r)
          (conso f r l)))
+
+(define (listo l)
+  (conde [(emptyo l)]
+         [(nonemptyo l)]))
 
 (define (firsto f out)
   (fresh (r)
@@ -25,9 +28,6 @@
   (fresh (f)
          (conso f r out)))
 
-(define (emptyo x)
-  (congruent x '()))
-
 (define (appendo a b out)
   (conde [(emptyo a) (congruent b out)]
          [(fresh (f r rec)
@@ -35,10 +35,10 @@
                  (conso f rec out)
                  (appendo r b rec))]))
 
-(define (lengtho n out)
-  (conde [(zeroo n) (emptyo out)]
+(define (lengtho n l)
+  (conde [(zeroo n) (emptyo l)]
          [(fresh (f r m)
-                 (conso f r out)
+                 (conso f r l)
                  (succo n m)
                  (lengtho m r))]))
 
