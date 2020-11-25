@@ -52,3 +52,16 @@
         (membero 1 q)
         (membero 2 q)
         (membero 3 q)))
+
+(define nonlist-test
+  (run* (q)
+        (== q '(1 2))
+        (nonlisto q)))
+
+(define flatten-test
+  (run* (q)
+        (flatteno '(1 (2 3) (4 (5 6)) 7) q)))
+
+(define flatten-test-2
+  (run 10 (q)
+       (flatteno q (list 1 2))))

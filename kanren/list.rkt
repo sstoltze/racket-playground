@@ -20,6 +20,8 @@
   (conde [(emptyo l)]
          [(nonemptyo l)]))
 
+(define nonlisto (make-kanren-predicate (compose not list?)))
+
 (define (firsto f out)
   (fresh (r)
          (conso f r out)))
@@ -47,3 +49,15 @@
          [(fresh (r)
                  (resto r l)
                  (membero m r))]))
+
+(define (flatteno l o)
+  (conde [(emptyo l) (emptyo o)]
+         [(fresh (f r r-flat)
+                 (conso f r l)
+                 (flatteno r r-flat)
+                 (conde [(listo f)
+                         (fresh (f-flat)
+                                (flatteno f f-flat)
+                                (appendo f-flat r-flat o))]
+                        [(nonlisto f)
+                         (conso f r-flat o)]))]))

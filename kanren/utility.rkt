@@ -70,3 +70,13 @@
                              (take-all (call/empty-state
                                         (fresh (x ...)
                                                g0 g ...))))]))
+
+(define (make-kanren-predicate p)
+  (lambda args
+    (lambda (s)
+      (define new-args (map (lambda (u)
+                              (walk u s))
+                            args))
+      (if (apply p new-args)
+          (unit s)
+          mzero))))
