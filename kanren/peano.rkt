@@ -74,6 +74,14 @@
 (define/peano (subtracto n m out)
   (pluso m out n))
 
+(define/peano (greatero n m)
+  (fresh (o)
+         (positiveo o)
+         (subtracto m n o)))
+
+(define/peano (lessero n m)
+  (greatero m n))
+
 (define/peano (multo n m out)
   (conde [(zeroo out) ;; 0 * m = n * 0 = 0
           (disj+ (zeroo m)
