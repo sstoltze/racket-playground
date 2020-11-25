@@ -42,6 +42,8 @@
         (unit new-s)
         mzero)))
 
+(define == congruent)
+
 (define (call/fresh f)
   (lambda (s)
     (define-values (c new-s) (fresh-var s))
