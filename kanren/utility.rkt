@@ -9,6 +9,9 @@
 
 (provide (all-defined-out))
 
+(define fail
+  (lambda (s) mzero))
+
 (define-syntax (fresh stx)
   (syntax-parse stx
     [(_ () g ...)         #'(conj+ g ...)]

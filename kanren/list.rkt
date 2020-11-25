@@ -61,3 +61,43 @@
                                 (appendo f-flat r-flat o))]
                         [(nonlisto f)
                          (conso f r-flat o)]))]))
+
+(define (lasto x l)
+  (conde [(emptyo l) fail]
+         [(lengtho 1 l)
+          (firsto x l)]
+         [(fresh (n r)
+                 (<=o 2 n)
+                 (resto r l)
+                 (lasto x r))]))
+
+(define (reverseo l o)
+  (conde [(emptyo l) (emptyo o)]
+         [(fresh (first last l-rest o-rest)
+                 (conso first l-rest l)
+                 (appendo o-rest (list first) o)
+                 (reverseo l-rest o-rest))]))
+
+(define (subseto l o)
+  (conde [(emptyo l)]
+         [(fresh (f l-rest o-rest)
+                 (conso f l-rest l)
+                 (deleteo f o o-rest)
+                 (subseto l-rest o-rest))]))
+
+(define (deleteo x l o)
+  (conde [(emptyo l) fail]
+         [(fresh (r)
+                 (conso x r l)
+                 (congruent r o))]
+         [(fresh (a l-rest o-rest)
+                 (conso a l-rest l)
+                 (conso a o-rest o)
+                 (deleteo x l-rest o-rest))]))
+
+(define (permuteo l o)
+  (conde [(emptyo l) (emptyo o)]
+         [(fresh (f l-rest o-rest)
+                 (conso f l-rest l)
+                 (deleteo f o o-rest)
+                 (permuteo l-rest o-rest))]))

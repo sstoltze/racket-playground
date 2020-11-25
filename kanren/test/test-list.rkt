@@ -60,8 +60,41 @@
 
 (define flatten-test
   (run* (q)
-        (flatteno '(1 (2 3) (4 (5 6)) 7) q)))
+        (flatteno '(1 (2 3) (4 (5 6)) (7)) q)))
 
 (define flatten-test-2
   (run 10 (q)
-       (flatteno q (list 1 2))))
+       (flatteno q (list 1 2 3))))
+
+(define last-test
+  (run* (q)
+        (lasto q '(1 2 3))))
+
+(define reverse-test
+  (run* (q)
+        (reverseo q '(1 2 3))))
+
+(define subset-test
+  (run* (q)
+        (subseto q '(1 2 3))))
+
+(define subset-test-2
+  (run 10 (q)
+       (subseto '(1 2 3) q)))
+
+(define permute-test
+  (run* (q x y)
+        (permuteo (list x y q) '(1 2 3))))
+
+(define permute-test-2
+  ;; This breaks when finding 7+.
+  (run 6 (q)
+       (permuteo '(1 2 3) q)))
+
+(define delete-test
+  (run* (q)
+        (deleteo 1 '(1 2 1 3) q)))
+
+(define delete-test-2
+  (run* (q)
+        (deleteo 1 '(2 3 4) q)))
