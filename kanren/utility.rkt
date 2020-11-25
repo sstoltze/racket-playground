@@ -11,7 +11,7 @@
 
 (define-syntax (fresh stx)
   (syntax-parse stx
-    [(_ () g ...) #'(conj+ g ...)]
+    [(_ () g ...)         #'(conj+ g ...)]
     [(_ (x xs ...) g ...) #'(call/fresh (lambda (x) (fresh (xs ...) g ...)))]))
 
 (define-syntax (inverse-eta-delay stx)
@@ -20,17 +20,21 @@
 
 (define-syntax (conj+ stx)
   (syntax-parse stx
-    [(_ g) #'(inverse-eta-delay g)]
+    [(_ g)         #'(inverse-eta-delay g)]
     [(_ g1 g2 ...) #'(conj (inverse-eta-delay g1) (conj+ g2 ...))]))
 
 (define-syntax (disj+ stx)
   (syntax-parse stx
-    [(_ g) #'(inverse-eta-delay g)]
+    [(_ g)         #'(inverse-eta-delay g)]
     [(_ g1 g2 ...) #'(disj (inverse-eta-delay g1) (disj+ g2 ...))]))
 
 (define-syntax (conde stx)
   (syntax-parse stx
     [(_ (g ...) ...) #'(disj+ (conj+ g ...) ...)]))
+
+(define-syntax (matche stx)
+  (syntax-parse stx
+    [(_ term (q g ...) ...) #'(conde [(congruent term q) g ...] ...)]))
 
 (define-syntax (run stx)
   (syntax-parse stx

@@ -65,3 +65,10 @@
         (fresh (n)
                (congruent n 5)
                (succo q n))))
+
+(define matche-test
+  (run* (q)
+        (fresh (a)
+               (matche a
+                       ['(1 2 3) (membero q a)]
+                       ['(a b c) (membero q a)]))))
