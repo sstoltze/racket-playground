@@ -79,8 +79,12 @@
          (positiveo o)
          (subtracto m n o)))
 
+(define >=o greatero)
+
 (define/peano (lessero n m)
   (greatero m n))
+
+(define <=o lessero)
 
 (define/peano (multo n m out)
   (conde [(zeroo out) ;; 0 * m = n * 0 = 0

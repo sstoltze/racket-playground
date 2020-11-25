@@ -32,9 +32,16 @@
   (syntax-parse stx
     [(_ (g ...) ...) #'(disj+ (conj+ g ...) ...)]))
 
+;; Support using _ for wildcards in matche expressions
+(define-syntax (match-congruent stx)
+  (syntax-parse stx
+    #:datum-literals (_)
+    [(match-congruent x _) #'unit]
+    [(match-congruent x y) #'(congruent x y)]))
+
 (define-syntax (matche stx)
   (syntax-parse stx
-    [(_ term (q g ...) ...) #'(conde [(congruent term q) g ...] ...)]))
+    [(_ term (q g ...) ...) #'(conde [(match-congruent term q) g ...] ...)]))
 
 (define-syntax (run stx)
   (syntax-parse stx
