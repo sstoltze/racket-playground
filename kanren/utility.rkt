@@ -12,6 +12,8 @@
 (define fail
   (lambda (s) mzero))
 
+(define succeed unit)
+
 (define-syntax (fresh stx)
   (syntax-parse stx
     [(_ () g ...)         #'(conj+ g ...)]
@@ -39,7 +41,7 @@
 (define-syntax (match-congruent stx)
   (syntax-parse stx
     #:datum-literals (_)
-    [(match-congruent x _) #'unit]
+    [(match-congruent x _) #'succeed]
     [(match-congruent x y) #'(congruent x y)]))
 
 (define-syntax (matche stx)
@@ -81,5 +83,5 @@
                               (walk u s))
                             args))
       (if (apply p new-args)
-          (unit s)
-          mzero))))
+          (succeed s)
+          (fail s)))))
