@@ -1,0 +1,2 @@
+* World map
+Following [[https://alex-hhh.github.io/2020/10/world-map-using-plot.html]]
