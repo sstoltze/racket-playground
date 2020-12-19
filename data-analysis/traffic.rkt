@@ -1,5 +1,6 @@
 #lang racket
 (require (for-syntax syntax/parse)
+         plot
          net/url
          json)
 (provide (all-defined-out))
@@ -118,3 +119,14 @@
   (hash-ref x 'NDT_IN_KMH))
 (define/handle-null (road-type x) 'string
   (hash-ref x 'ROAD_TYPE))
+
+(define (point->line p)
+  (lines (list (list (point-1-longitude p) (point-1-latitude p))
+               (list (point-2-longitude p) (point-2-latitude p)))))
+
+(define (draw-data data)
+  (plot (map point->line data)))
+
+(define (draw-test)
+  (define-values (meta meta-next) (get-records-from metadata-start))
+  (draw-data meta))
