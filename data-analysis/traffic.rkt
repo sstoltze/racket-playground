@@ -124,9 +124,12 @@
   (lines (list (list (point-1-longitude p) (point-1-latitude p))
                (list (point-2-longitude p) (point-2-latitude p)))))
 
-(define (draw-data data)
-  (plot (map point->line data)))
+(define (traffic-renderers data)
+  (map point->line data))
 
-(define (draw-test)
+(define (draw-traffic-data data)
+  (plot (traffic-renderers data)))
+
+(define (sample-traffic-metadata)
   (define-values (meta meta-next) (get-records-from metadata-start))
-  (draw-data meta))
+  meta)

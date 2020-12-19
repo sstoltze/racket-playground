@@ -1,0 +1,432 @@
+_id,id,department,name,street,no,zip,city,lat,lng
+1,2011,BA,Grøndalsvej-adm,Grøndalsvej,1,8260,Viby J,56.122749,10.14937
+2,2016,MBU,Bakkegårdskolen og Trige Bibliotek,Bjørnshøjvej,1,8380,Trige,56.253364,10.148891
+3,2020,MKB,Beder-Malling Bibliotek,Kirkebakken,41,8330,Beder,56.060383,10.215753
+4,2021,MTM,Århus Brandvæsen - Kirstinesminde,Kirstinesmindevej,14,8200,Århus N,56.195818,10.1713609
+5,2027,MTM,Brandstation,Ny Munkegade,15,8000,Århus C,56.1615652,10.2031271
+6,2031,MSO,Demenscentrum Aarhus,Graham Bells Vej,2,8200,Århus N,56.20087,10.185313
+7,2035,MSB,"Ydelsescenter Vest, Adm.",Silkeborgvej,622,8220,Brabrand,56.153493,10.118396
+8,2045,MSB,En Ekstra hånd,Fredens Torv,8,8000,Århus C,56.1542554,10.2094972
+9,2050,MSB,Socialcenter Vest,Gudrunsvej,78,8220,Brabrand,56.1554775,10.1343281
+10,2053,MTM,Affaldscenter Aarhus,Ølstedvej,20,8200,Århus N,56.227636,10.157928
+11,2054,MSO,Fortegaarden Plejehjem,Femmøllervej,10,8240,Risskov,56.195923,10.23451
+12,2055,MSO,Lokalcenter Frederiksbjerg,Ankersgade,21,8000,Århus C,56.1478006,10.1902611
+13,2057,MBU,Frydenlundskolen (Center 10),Høgevej,25,8210,Århus V,56.1711319,10.1783736
+14,2063,MKB,Hasle Bibliotek,Kappelvænget,2,8210,Århus V,56.179471,10.1672604
+15,2065,MBU,Bavnehøj Skole,Koltvej,15-19,8361,Hasselager,56.106522,10.09695
+16,2072,MKB,Højbjerg Bibliotek,Oddervej,74,8270,Højbjerg,56.1142695,10.2074291
+17,2073,MBU,Højvangskolen,Klokkeskovvej,1,8260,Viby J,56.1305061,10.1137036
+18,2075,MBU,Ellevangskolen - tidligere Jellebakkeskolen,Jellebakken,17,8240,Risskov,56.203054,10.217604
+19,2081,MSO,Kløvervangen Plejehjemmet,Kløvervangen,31,8541,Skødstrup,56.263657,10.292376
+20,2082,MBU,Kolt Skole,Kolt Østervej,45,8361,Hasselager,56.1099242,10.0760538
+21,2084,MBU,Kragelundskolen,Parkvej,18,8270,Højbjerg,56.11519,10.200594
+22,2088,MBU,Lisbjergskolen,Lisbjergvej,15,8200,Århus N,56.2192939,10.1573058
+23,2089,MSO,Lokalcenter Abildgaarden,Skovvangsvej,99,8200,Århus N,56.17678,10.206704
+24,2090,MSO,Lokalcenter Trøjborg,Kirkegårdsvej,53,8000,Århus C,56.166957,10.213321
+25,2092,MSO,Lokalcenter Bjerggaarden,Østerøgade,20,8200,Århus N,56.175991,10.191634
+26,2093,MSO,Lokalcenter Bjørnshøj,Gartnerparken,1,8380,Trige,56.2524569,10.1439749
+27,2094,MSO,Lokalcenter Brabrand,Voldbækvej,92,8220,Brabrand,56.152802,10.095306
+28,2095,MSO,Lokalcenter Bøgeskovhus,Skovlundgårdsvej,51,8260,Viby J,56.124224,10.129708
+29,2096,MSO,Lokalcenter Carl Bloch gd.,Carl Blochsgade,30,8000,Århus C,56.15465,10.192664
+30,2097,MSO,Lokalcenter Dalgas,Dalgas Avenue,54,8000,Århus C,56.139314,10.205466
+31,2098,MSO,Lokalcenter Elmevang,Elmevangsvej,2,8355,Solbjerg,56.042315,10.087423
+32,2099,MSO,Lokalcenter Eskegården,Byagervej,115,8330,Beder,56.057259,10.2072902
+33,2100,MSO,Lokalcenter Fuglebakken,Fuglebakkevej,4A,8210,Århus V,56.165838,10.185039
+34,2101,MSO,Lokalcenter Hasle,Rymarken,118,8210,Århus V,56.167659,10.154995
+35,2102,MSO,Lokalcenter Havkær,Mosealleen,1,8381,Tilst,56.1918279,10.1104053
+36,2103,MSO,Lokalcenter Hjortshøj,Hjortshøj Stationvej,40,8530,Hjortshøj,56.243365,10.262146
+37,2104,MSO,Lokalcenter Holme,Nygårdsvej,34,8270,Højbjerg,56.110441,10.177756
+38,2105,MSO,Lokalcenter Hørgården,Hørgårdsvej,17,8240,Risskov,56.19532,10.238133
+39,2106,MSO,Lokalcenter Kildevang,Langballevej,3,8320,Mårslet,56.069461,10.164217
+40,2107,MSO,Lokalcenter Koltgården,Kunnerupvej,196,8361,Hasselager,56.111208,10.0738939
+41,2108,MSO,Lokalcenter Marselis,Marselis Boulevard,94,8000,Århus C,56.140438,10.191483
+42,2109,MSO,Lokalcenter Møllestien,Grønnegade,10,8000,Århus C,56.1569119,10.2032848
+43,2110,MSO,Lokalcenter Næshøj,Næshøjvej,41,8462,Harlev J,56.143466,9.992068
+44,2111,MSO,Lokalcenter Rosenbakken,Grenåvej,701,8541,Skødstrup,56.270696,10.309989
+45,2112,MSO,Lokalcenter Rosenvang,Vidtskuevej,4,8260,Viby J,56.129126,10.181046
+46,2113,MSO,Lokalcenter Sabro,Sabro kirkevej,151,8471,Sabro,56.2150281,10.0244561
+47,2114,MSO,Lokalcenter Skelager,Skelagervej,33,8200,Århus N,56.193331,10.1946049
+48,2115,MSO,Lokalcenter Skåde,Bushøjvænget,113,8270,Højbjerg,56.1054926,10.1980044
+49,2116,MSO,Lokalcenter Søholm,Bispevej,70,8260,Viby J,56.14114,10.115221
+50,2117,MSO,Lokalcenter Sønderskovhus,Lystrup Centervej,78,8520,Lystrup,56.236215,10.23345
+51,2118,MSO,Lokalcenter Toftegården,Sandkåsvej,1,8210,Århus V,56.181175,10.17011
+52,2119,MSO,Lokalcenter Tranbjerg,Torvevænget,1,8310,Tranbjerg J,56.092673,10.136933
+53,2120,MSO,Lokalcenter Vejlby,Vikærtoften,6,8240,Risskov,56.1945299,10.218025
+54,2121,MSO,Lokalcenter Vestervang,Vestervang,16,8000,Århus C,56.16359,10.194567
+55,2122,MSO,Lokalcenter Viby,Kongsgårdsvej,6,8260,Viby J,56.126074,10.162709
+56,2123,MSO,Lokalcenter Åbygård,Kingosvej,3,8230,Åbyhøj,56.153109,10.156313
+57,2124,MKB,Lystrup Bibliotek,Bystævnet,4B,8520,Lystrup,56.234356,10.227922
+58,2127,MBU,Malling Skole,Lundshøjgårdsvej,19,8340,Malling,56.039161,10.198104
+59,2137,MBU,Mårslet Skole,Testrupvej,4,8320,Mårslet,56.068882,10.156939
+60,2138,MKB,N.J. Fjordsgade Skole,N.J. Fjordsgade,2,8000,Århus C,56.144314,10.198572
+61,2142,MBU,Nordgårdsskolen,Jettesvej,2,8220,Brabrand,56.1577364,10.13107
+62,2153,MSB,PPR,Hermodsvej,3-5,8230,Åbyhøj,56.153938,10.174111
+63,2155,MSB,Projekthus,Fredens Torv,6,8000,Århus C,56.1541944,10.2097509
+64,2157,MKB,Risskov Bibliotek,Fortebakken,1,8240,Risskov,56.1937133,10.2234383
+65,2161,BA,Århus Rådhus,Rådhuspladsen,2,8000,Århus C,56.152658,10.2074615
+66,2173,MSO,Sct. Olaf Plejehjem,Hjulbjergvej,58,8270,Højbjerg,56.1149871,10.1830786
+67,2174,MSO,Lokalcenter Skæring,Sommersmindevej,2,8250,Egå,56.22946,10.305049
+68,2183,MSB,Spanien,Spanien,19,8000,Århus C,56.1502218,10.2103472
+69,2189,MBU,Strandskolen,Nellikevej,1,8240,Risskov,56.200217,10.244384
+70,2190,MSO,Sundhed og Omsorg,Søren Frichsvej,36G,8230,Åbyhøj,56.153439,10.177493
+71,2191,MBU,Sølystskolen,Egå Havvej,5,8250,Egå,56.211717,10.283211
+72,2195,MKB,Tilst Bibliotek,Tilst Skolevej,13A,8381,Tilst,56.188355,10.110579
+73,2198,MKB,Tranbjerg Bibliotek,Kirketorvet,6,8310,Tranbjerg J,56.0908124,10.1358012
+74,2206,MSB,Vejlby Adm. Bygning,Vejlby Centervej,52,8240,Risskov,56.193347,10.20413
+75,2210,MKB,Viby Bibliotek,Skanderborgvej,170,8260,Viby J,56.130558,10.164646
+76,2212,MBU,Viby Skole,Kirkevej,2,8260,Viby J,56.1277971,10.164633
+77,2213,MSO,Vikærgaarden Plejehjem,Hvidkildevej,1,8240,Risskov,56.1904086,10.2136022
+78,2217,MKB,Aaby Bibliotek,Ludvig Feilbergsvej,7,8230,Åbyhøj,56.156438,10.162515
+79,2221,MTM,Bautavej - Teknik og Miljø,Bautavej,1,8210,Århus V,56.166792,10.146852
+80,2227,MSO,Lokalcenter Gellerup,Gudrunsvej,80,8220,Brabrand,56.155629,10.134509
+81,2229,MSB,Jægergården,Værkmestergade,15,8000,Århus C,56.148866,10.207197
+82,2235,MKB,Solbjerg Bibliotek,Kærgårdsvej,4,8355,Solbjerg,56.042156,10.0840789
+83,2236,MTM,Århusværket,Kalkværksvej,14,8000,Århus C,56.150991,10.212222
+84,2237,MKB,Filmby Aarhus Sekretariatet,Filmbyen,23,8000,Århus C,56.150657,10.21329
+85,2239,MSB,Toldbodgade,Toldbodgade,5,8000,Århus C,56.1518305,10.2119936
+86,2240,MBU,Administrationsbygningen GV2,Grøndalsvej,2,8260,Viby J,56.12402,10.151773
+87,2246,MTM,NVS driftsområde vest,Edwin Rahrs Vej,64,8220,Brabrand,56.165141,10.112132
+88,2253,MSO,Thorsgården,Thorsvej,30,8230,Åbyhøj,56.152459,10.166162
+89,2256,MSB,Marselisborgcentret,P.P. Ørumsgade,11,8000,Århus C,56.1419433,10.1880594
+90,2257,MSB,Arbejdsmarkedscenter Nord,Skejbygårdsvej,13-17,8240,Risskov,56.195678,10.202817
+91,2259,MSB,Center for specialundervisning for voksne psykiatri,Nørre Allé,31,8000,Århus C,56.1598832,10.2045585
+92,2260,MSB,Arbejdsmarkedscenter Syd,Gunnar Clausens Vej,90,8260,Viby J,56.1072579,10.1484683
+93,2261,MBU,Langagerskolen,Bøgeskov Høvej,10,8260,Viby J,56.118385,10.133461
+94,2262,MKB,Musikhuset,Thomas Jensens Alle,2,8000,Århus C,56.1529864,10.199067
+95,2263,MSB,Bøgholt,Grøndalsvej,65,8260,Viby J,56.120328,10.135239
+96,2267,MKB,Globus1,Gudrunsvej,3A,8220,Brabrand,56.159067,10.141711
+97,2275,MKB,Musikskolen - Kulturhus,Vester Allé,3D,8000,Århus C,56.153408,10.201254
+98,2276,MSB,Atrium Huset,Gøteborg Alle,8,8200,Århus N,56.183994,10.19388
+99,2277,MSB,Tuesten Huset,Tuestensvej,2,8381,Tilst,56.1871988,10.1066448
+100,2278,MSB,Rådgivningscentret,Langenæs Alle,18,8000,Århus C,56.142978,10.185188
+101,2281,MSB,STU. 4,Graham Bells Vej,4,8200,Århus N,56.2014928,10.184759
+102,2289,MSB,Ekstern Bolig,Malmøgade,7,8200,Århus N,56.1798054,10.1963127
+103,2290,MSB,Kong Chr. d. IX børnehjem (DBF) ,Reykjaviksgade,11,8200,Århus N,56.175092,10.191767
+104,2296,MSB,Aktivitets- og Udviklingscenter Kragelund,Dybrovej,21,8270,Højbjerg,56.113961,10.202276
+105,2298,MSO,Hestehavehusene Plejehjem,Hestehavevej,6,8270,Højbjerg,56.120185,10.204369
+106,2299,MSB,Forsorgshjemmet Østervang,Trankær Mosevej,25,8310,Tranbjerg J,56.0810601,10.1248993
+107,2300,MSB,Bocenter Tranbjerg,Trankærgårdsvej,108,8310,Tranbjerg J,56.0888281,10.1369918
+108,2302,MSB,"Kontakthuset, Forsorg og Misbrug",Spanien,63,8000,Århus C,56.1488846,10.2097751
+109,2310,MSB,Århus Krisecenter,Søndervangen,92,8260,Viby J,56.115026,10.159417
+110,2316,MBU,Specialbørnehaven Skovbrynet,Hestehavevej,10,8270,Højbjerg,56.1199721,10.2022081
+111,2322,MSB,Den Grønne Gren,Havkærparken,46,8381,Tilst,56.186345,10.116322
+112,2323,MSB,Aktivitetshuset Havkærparken,Havkærparken,45,8381,Tilst,56.185676,10.1166889
+113,2329,MBU,Legepladsen Langkær,Havkærvej,20,8381,Tilst,56.191595,10.109964
+114,2330,MSB,Tingagergården,Tilst Skolevej,17,8381,Tilst,56.1858231,10.1051174
+115,2335,MBU,Vuggestue,Haurumsvej,1A,8381,Tilst,56.188004,10.105622
+116,2340,MSB,Stefanshjemmet,Carl Nielsens Vej,2,8000,Århus C,56.134889,10.20766
+117,2341,MSB,Heimdal MSB,Årslev Møllevej,19B,8220,Brabrand,56.155137,10.085214
+118,2342,MSB,Heimdal MSB,Årslev Møllevej,19,8220,Brabrand,56.155505,10.084274
+119,2343,MSB,Tre Ege Kirkens Korshær,Årslev Møllevej,15,8220,Brabrand,56.154505,10.086629
+120,2344,MBU,Integreret Institution,Byleddet,22A,8220,Brabrand,56.150688,10.089451
+121,2348,MSO,Engsøgård Plejehjemmet,Engdalsvej,12,8220,Brabrand,56.152074,10.106442
+122,2351,MSO,Egely plejehjem,Holmegårdsvej,45,8270,Højbjerg,56.115428,10.1683229
+123,2354,MBU,Børnehuset,Tulshøjvej,5,8270,Højbjerg,56.1130117,10.1725889
+124,2357,MSB,Erhvervstræningsskole - Voksen og børn,Nygårdsvej,25,8270,Højbjerg,56.1116082,10.1763054
+125,2360,MBU,Tudsen,Sadelmagertoften,23,8270,Højbjerg,56.1068749,10.1681118
+126,2361,MBU,Kometen,Urmagertoften,24,8270,Højbjerg,56.1073039,10.1683244
+127,2363,MBU,Specialbørnehaven,Nygårdsvej,13,8270,Højbjerg,56.110996,10.175103
+128,2364,MBU,DII Flyveren,Nygårdsvej,15,8270,Højbjerg,56.110637,10.176089
+129,2372,MBU,Børnehaven Højlyngen,Højlyngen,1 - 3,8210,Århus V,56.172086,10.1753579
+130,2373,MBU,Klubben Musvågevej,Musvågevej,32,8210,Århus V,56.168593,10.175122
+131,2374,MSB,"Bo- og aktivitetscentret, Skovlund",Skejbygårdsvej,37,8240,Risskov,56.196256,10.199692
+132,2376,MSB,Ledsagerordningen,Sonnesgade,9,8000,Århus C,56.150115,10.195147
+133,2377,MSB,Ungdomscentret,Skanderborgvej,156,8260,Viby J,56.132794,10.16799
+134,2379,MBU,AKVA,Nordbyvej,21B,8260,Viby J,56.128477,10.157569
+135,2385,MSB,Stensagergården + Stensagerskolen,Stensagervej,9,8260,Viby J,56.130753,10.146648
+136,2386,MBU,SFO Grundtvigsvej,Grundtvigsvej,26,8260,Viby J,56.129416,10.169422
+137,2392,MBU,Vuggestuen Vibyhus,Bjørnbaksvej,7-9,8260,Viby J,56.1282508,10.168895
+138,2393,MBU,Børnehaven Østerbo,Bjørnbaksvej,19,8260,Viby J,56.128207,10.1694998
+139,2394,MBU,Vuggestuen Østerbo,Øster Alle,50,8260,Viby J,56.128522,10.16999
+140,2397,MBU,FADL´s Børnehave,Fuglebakkevej,68,8210,Århus V,56.168033,10.175411
+141,2403,MBU,Damhuset,Tretommervej,2,8240,Risskov,56.186075,10.226331
+142,2412,MSB,Bethesda (DBF),Bethesdavej,31,8200,Århus N,56.1779798,10.2098625
+143,2423,MBU,Skovvang Fritidshjem,Skovvangsvej,129,8200,Århus N,56.1764859,10.20821
+144,3010,MBU,Vuggestuen Falstersgade,Falstersgade,17,8000,Århus C,56.162744,10.200322
+145,3016,MSB,Børnekulturen,Frederiks Alle,20,8000,Århus C,56.151516,10.199939
+146,3024,MBU,Vuggestuen Graven,Graven,19,8000,Århus C,56.158306,10.209409
+147,3031,MSO,Plejeboligerne Husumvej,Husumvej,1,8000,Århus C,56.1381593,10.1843354
+148,3042,MBU,Vuggestuen Jægergårdsgade ,Jægergårdsgade,68,8000,Århus C,56.147652,10.200849
+149,3062,MBU,Skattekisten,Knudrisgade,7B,8000,Århus C,56.1634907,10.2124572
+150,3063,MBU,Vuggestuen,Kroghsgade,1,8000,Århus C,56.145768,10.196863
+151,3076,MBU,DII Langenæsstien 6A (3&#39;rn),Langenæsstien,6A,8000,Århus C,56.144207,10.183552
+152,3077,MBU,DII Stien,Langenæsstien,6B,8000,Århus C,56.144482,10.182981
+153,3078,MBU,Langenæsklubberne,Langenæsstien,6C,8000,Århus C,56.144652,10.182987
+154,3088,MBU,Daginst. Marselis Boulevard,Marselis Boulevard,48,8000,Århus C,56.1412637,10.1960496
+155,3089,MBU,Børnehaven Marselisparken,Marselis boulevard,50,8000,Århus C,56.140682,10.195933
+156,3096,MBU,Vuggestuen,Mindegade,8,8000,Århus C,56.153761,10.21107
+157,3104,MSB,Ungekontakten,Nørre Allé,30,8000,Århus C,56.1602454,10.206312
+158,3106,MBU,Storkereden,Nørre Boulevard,1A,8000,Århus C,56.165046,10.2111509
+159,3108,MBU,Børnehuset Ole Rømer,Ole Rømers Gade,36,8000,Århus C,56.146759,10.196588
+160,3121,MBU,Vuggestuen Sct. Anna,Sct. Anna Gade,34,8000,Århus C,56.146411,10.198139
+161,3123,MBU,Århus Kommunale Vuggestue,Silkeborgvej,88A,8000,Århus C,56.1567254,10.1836642
+162,3127,MBU,Legepladsen Skolemarken,Skt. Anna Gade,38,8000,Århus C,56.1465051,10.198534
+163,3131,MBU,Guldbryllupsasylets Børnehave,Skt. Pauls Gade,31,8000,Århus C,56.146082,10.200591
+164,3133,MKB,Aarhus Svømmehal / Spanien,Spanien,1,8000,Århus C,56.1516325,10.2113895
+165,3143,MBU,Beboernes børnehus,Sølystgade,30,8000,Århus C,56.162505,10.2045169
+166,3148,MBU,Børnehaven Thunfisken,Thunøgade,22,8000,Århus C,56.1614392,10.205491
+167,3149,MBU,Legepladsen Børnenes Jord,Thunøgade,2A,8000,Århus C,56.162481,10.207962
+168,3155,MBU,Børnely,Valdemarsgade,16,8000,Århus C,56.151756,10.197355
+169,3180,MSB,Abildhus,Abildgade,23,8200,Århus N,56.178235,10.206701
+170,3182,MBU,Klubben Aldersrovej,Aldersrovej,45,8200,Århus N,56.174169,10.209908
+171,3192,MBU,Rytterparken,C.F. Jessens Vej,7,8200,Århus N,56.173558,10.208117
+172,3197,MBU,"Børnehuset Rønnebo, Lisbjerg",Elevvej,14,8200,Århus N,56.222451,10.167513
+173,3202,MBU,DII Børnebakken,Grydhøjvej,16A,8200,Århus N,56.18759,10.202032
+174,3203,MBU,Klubben Nydam,Grydhøjvej,26A,8200,Århus N,56.187842,10.201057
+175,3208,MBU,Vuggestuen Katrinebjergparken,Jens Baggesens Vej,94,8200,Århus N,56.170783,10.19595
+176,3210,MBU,Lillefod Vuggestue,Katrinebjergvej,140,8200,Århus N,56.174966,10.182372
+177,3216,MBU,Huset på Bakken,Lindholmvej,2A,8200,Århus N,56.1880737,10.1950883
+178,3220,MBU,Børnehaven Motalagade,Motalagade,6,8200,Århus N,56.17941,10.19675
+179,3238,MBU,Skibet,Skejbytoften,230,8200,Århus N,56.198081,10.1893689
+180,3239,MBU,Firkløveren,Skejbytoften,232,8200,Århus N,56.197649,10.189436
+181,3251,MBU,Børnehaven Thorshavnsgade,Thorshavnsgade,16,8200,Århus N,56.1763835,10.183781
+182,3259,MBU,DII Riisvangen,Riisvangs Alle,27A,8200,Århus N,56.181433,10.214148
+183,3303,MBU,Børnehuset Jernurten,Jernaldervej,286,8210,Århus V,56.175076,10.129316
+184,3313,MBU,Børnehuset,Klokkervej,38,8210,Århus V,56.1614331,10.1584183
+185,3325,MBU,Heldagsbørnehaven Solnæs,Præstevangsvej,10,8210,Århus V,56.163557,10.169832
+186,3326,MBU,Børnehuset Baobab,Runevej,107-109,8210,Århus V,56.174558,10.136775
+187,3330,MBU,Heldagsbørnehaven Ryhaven,Ryhaven,114,8210,Århus V,56.163606,10.148303
+188,3332,MBU,Myretuen,Ryhavevej,38,8210,Århus V,56.165895,10.155852
+189,3352,MBU,Vuggestuen Hasle,Østrevej,30,8210,Århus V,56.167758,10.168381
+190,3353,MBU,Vuggestuen Kalendervej,Kalendervej,5,8210,Århus V,56.1724723,10.163934
+191,3358,MBU,Fritidshuset,Charlottevej,3,8220,Brabrand,56.150971,10.135885
+192,3372,MBU,Hejredalsparken,Emmasvej,1A,8220,Brabrand,56.1581664,10.1289393
+193,3388,MBU,"Børnehuset Mælkevejen, pavillion",Gudrunsvej,66A,8220,Brabrand,56.156107,10.139144
+194,3390,MBU,Heldagsbørnehave Hans Brogesvej,Hans Brogesvej,23,8220,Brabrand,56.155928,10.115472
+195,3403,MBU,Vuggestuen Junglen,Janesvej,1A,8220,Brabrand,56.164941,10.139083
+196,3404,MBU,Byggelegepladsen Troldhøjen,Janesvej,4,8220,Brabrand,56.166763,10.132422
+197,3407,MBU,DII Mariehønen,Jernaldervænget,6,8220,Brabrand,56.17354,10.123279
+198,3413,MBU,Børnehaven Skræppen,Lenesvej,23,8220,Brabrand,56.166245,10.139863
+199,3414,MBU,Vuggestuen Mælkebøtten,Lenesvej,25,8220,Brabrand,56.16665,10.139859
+200,3415,MBU,Børnehaven Spiren,Lenesvej,27,8220,Brabrand,56.167045,10.139886
+201,3416,MBU,Natursamarbejdet,Louisevej,100,8220,Brabrand,56.145664,10.140332
+202,3418,MBU,Børnehaven Klodshans,Louisevej,31,8220,Brabrand,56.14839,10.138095
+203,3419,MBU,Vuggestuen Tommelise,Louisevej,33,8220,Brabrand,56.148458,10.137485
+204,3420,MBU,Børnehaven Nattergalen,Louisevej,35,8220,Brabrand,56.148793,10.1372699
+205,3430,MBU,Skovgårdsparken,Røgelvej,15,8220,Brabrand,56.153805,10.126583
+206,3441,MBU,Børnehaven Gammelgården ,Åbyhøjvej,4,8210,Århus V,56.165221,10.161041
+207,3449,MBU,DII Perlen,B.S.Ingemanns Vej,27,8230,Åbyhøj,56.152546,10.163605
+208,3461,MBU,Fritidshjemmet Solgården,Henrik Hertz Vej,64E,8230,Åbyhøj,56.14841,10.157154
+209,3462,MBU,Solsikken,Henrik Hertz Vej,73A,8230,Åbyhøj,56.148728,10.158773
+210,3470,MBU,Klubberne Åbyhøj,Ludvig Feilbergs Vej,7,8230,Åbyhøj,56.156438,10.162515
+211,3473,MBU,Børnehaven Åby,O. I. Offersens Vej,35,8230,Åbyhøj,56.148965,10.162145
+212,3476,MBU,Integreret Institution,Silkeborgvej,342,8230,Åbyhøj,56.15401,10.146343
+213,3483,MBU,Åbyhøjgården,Åbyhøjgården,34,8230,Åbyhøj,56.147995,10.147693
+214,3485,MBU,DII Hobitten,Åbyvej,91,8230,Åbyhøj,56.146208,10.162979
+215,3488,MBU,Daginst. Alsvej,Alsvej,37,8240,Risskov,56.19301,10.222926
+216,3503,MBU,Gnisten,Flintebakken,2,8240,Risskov,56.206313,10.210501
+217,3505,MBU,Børnehuset på Engen,Flintebakken,4,8240,Risskov,56.206177,10.209771
+218,3508,MBU,Vuggestuen Forteleddet,Forteleddet,27,8240,Risskov,56.194355,10.236668
+219,3511,MBU,Kastanjehuset,Frijsenborgvej,15,8240,Risskov,56.189596,10.213745
+220,3512,MBU,Børnehaven Vejlby,Frijsenborgvej,17,8240,Risskov,56.18963,10.2139399
+221,3523,MBU,Børnehaven Jasminvej,Jasminvej,31,8240,Risskov,56.1945646,10.2386497
+222,3525,MBU,Daginst. Ellevang (Børnehave),Jellebakken,12,8240,Risskov,56.202232,10.217094
+223,3526,MBU,Ung i Aarhus - Nord,Jellebakken,2-4,8240,Risskov,56.2025444,10.2137373
+224,3528,MBU,Den Integrerede Institution,Julsøvej,3,8240,Risskov,56.205064,10.251199
+225,3535,MBU,Krudtuglen,Kantorvænget,31,8240,Risskov,56.2007242,10.2056481
+226,3536,MBU,Børnehuset på Kanten,Kantorvænget,33,8240,Risskov,56.200586,10.206242
+227,3549,MBU,Lindehuset,Lindenborgvej,7,8240,Risskov,56.188951,10.212581
+228,3559,MBU,Labyrinten,Nordre Strandvej,159,8240,Risskov,56.202628,10.267142
+229,3561,MBU,Nyskoven,Næringen,1,8240,Risskov,56.191763,10.198778
+230,3562,MBU,Børnehuset Bonanza,Næringen,101,8240,Risskov,56.194997,10.1960909
+231,3563,MBU,Legestuen Næringen,Næringen,2,8240,Risskov,56.191859,10.199168
+232,3564,MBU,Daginst. Næringen,Næringen,3,8240,Risskov,56.1920418,10.1994739
+233,3565,MBU,Lærkebo,Næringen,95,8240,Risskov,56.195007,10.196978
+234,3566,MBU,Børnehuset på Toppen,Næringen,97,8240,Risskov,56.194887,10.197296
+235,3584,MBU,Solsikken,Solbakken,5,8240,Risskov,56.188011,10.234901
+236,3585,MBU,Under Bøgen,Solbakken,7,8240,Risskov,56.187672,10.234729
+237,3591,MBU,Spirillen,Tornebakken,3,8240,Risskov,56.2025077,10.2122422
+238,3606,MBU,DII Gadekæret,Vikærtoften,2A,8240,Risskov,56.1941599,10.2152369
+239,3614,MBU,Daginst. Tornebakken,Tornebakken,5,8240,Risskov,56.2028035,10.2119833
+240,3617,MBU,Annekæret,Annekærvej,34,8250,Egå,56.228296,10.297831
+241,3619,MBU,Børnehaven Delfinhuset,Bredevej,2C,8250,Egå,56.22969,10.29512
+242,3623,MBU,Pilehuset,Brobjerg Parkvej,60,8250,Egå,56.2031274,10.258856
+243,3627,MBU,Brohaven,Brohaven,1A-B,8250,Egå,56.2044602,10.2730322
+244,3629,MBU,DII Solgården,Egå Strandvej,2,8250,Egå,56.206987,10.271381
+245,3633,MBU,Gl. Egå Børnehus,Eghøjvej,6,8250,Egå,56.216515,10.266955
+246,3648,MBU,DII Skæringhus,Skæring Hedevej,18,8250,Egå,56.2315308,10.2993883
+247,3652,MBU,DII Stenhøjen,Skæring Parkvej,280,8250,Egå,56.235005,10.302414
+248,3664,MBU,Åtrolden,Åmarksvej,17,8250,Egå,56.205986,10.259483
+249,3667,MBU,Åkanden,Åvænget,1,8250,Egå,56.206607,10.260261
+250,3670,MBU,Stautrup Fritidsklub,Bispevej,7,8260,Viby J,56.137165,10.11562
+251,3692,MBU,Børnehøjen,Højvangsvej,1A,8260,Viby J,56.1296281,10.1163469
+252,3701,MBU,Børnehaven Kjærslund,Kjærslund,1A,8260,Viby J,56.112041,10.150964
+253,3702,MBU,DII Kjærslund,Kjærslund,1B,8260,Viby J,56.111747,10.150779
+254,3703,MBU,Klokkeskoven,Klokkeskovvej,11,8260,Viby J,56.131873,10.114646
+255,3704,MBU,Kælkebakken,Klokkeskovvej,13,8260,Viby J,56.132146,10.11319
+256,3705,MBU,Paletten,Klokkeskovvej,9,8260,Viby J,56.131919,10.115468
+257,3718,MBU,Heldagsbørnehaven Neptun,Neptunvej,77,8260,Viby J,56.1216875,10.1744288
+258,3742,MBU,Vuggestuen Egmontgården,Søndervangen,95,8260,Viby J,56.115691,10.160369
+259,3743,MBU,Vuggestuen Kjærslund,Søndervangs Alle,49,8260,Viby J,56.110845,10.150092
+260,3744,MBU,"DII Søskrænten, Stautrup",Søskrænten,1,8260,Viby J,56.134255,10.124418
+261,3747,MBU,Vidtskue,Vidtskuevej,10,8260,Viby J,56.1286665,10.178714
+262,3748,MBU,Børnehuset Fredensvang,Vidtskuevej,27,8260,Viby J,56.127331,10.177065
+263,3749,MBU,Klubben Rosenvang,Vidtskuevej,31,8260,Viby J,56.127754,10.176113
+264,3762,MBU,Vuggestuen,Bushøjvænget,182,8270,Højbjerg,56.107858,10.191345
+265,3768,MBU,Børnehuset Elmehøj,Elmehøjvej,4,8270,Højbjerg,56.102902,10.21764
+266,3770,MBU,Lille Rygaard,Elverdalsvej,46,8270,Højbjerg,56.1128181,10.1984128
+267,3776,MBU,Børnehaven,Hjulbjergvej,127,8270,Højbjerg,56.112719,10.183824
+268,3799,MBU,Lyseng Fritidsklub,Lysengvej,4A,8270,Højbjerg,56.112755,10.191287
+269,3819,MBU,Kræmmerhuset,Olaf Rudesvej,20,8270,Højbjerg,56.118174,10.1954144
+270,3825,MBU,Vuggestue,Rundhøj Alle,65,8270,Højbjerg,56.120261,10.175932
+271,3828,MBU,Børnegården Rundhøj (SDT),Rundhøj Alle,2,8270,Højbjerg,56.119954,10.181778
+272,3835,MBU,Kridthøj Fritidshjem,Saralyst Alle,56,8270,Højbjerg,56.116618,10.19049
+273,3837,MBU,Integreret Institution,Stennehøj Alle,202A,8270,Højbjerg,56.107618,10.202127
+274,3838,MBU,DII Børnehuset,Stenvej,101,8270,Højbjerg,56.1073208,10.2031499
+275,3850,MBU,Legehuset Regnbuen,Børupvej,2,8310,Tranbjerg J,56.094806,10.129698
+276,3860,MBU,Børnehuset Tranely,Kirketorvet,10,8310,Tranbjerg J,56.0904937,10.1371262
+277,3870,MBU,Børnehaven,Laurbærvænget,4,8310,Tranbjerg J,56.0895027,10.1428685
+278,3871,MBU,Integreret Institution,Skovgårdsvænget,600,8310,Tranbjerg J,56.090568,10.122422
+279,3873,MBU,Børnehuset Hoppeloppen,Torvevænget,5A,8310,Tranbjerg J,56.093949,10.137935
+280,3878,MBU,Smilehullet,Østerby Alle,348A,8310,Tranbjerg J,56.091349,10.140141
+281,3879,MBU,Integreret Institution,Torvevænget,5B,8310,Tranbjerg J,56.094206,10.138296
+282,3882,MBU,DII Valnødden,Banevej,2,8320,Mårslet,56.0680669,10.1628623
+283,3885,MBU,Dagtilbud Valhalla,Bedervej,86,8320,Mårslet,56.063196,10.165393
+284,3891,MBU,Solhuset,Hørretvej,14A,8320,Mårslet,56.067625,10.16543
+285,3892,MBU,Græsbakken,Hørretvej,14B,8320,Mårslet,56.067964,10.165714
+286,3901,MBU,Legepladsen Mårslet,Testrupvej,1,8320,Mårslet,56.067884,10.158917
+287,3903,MBU,Mårslet Skovbørnehave,Testrupvej,8,8320,Mårslet,56.0681396,10.1540163
+288,3904,MBU,Fritidshjemmet Asgården,Testrupvej,8B,8320,Mårslet,56.068334,10.154063
+289,3908,MBU,Bekkasinen,Byagervej,162,8330,Beder,56.053944,10.212564
+290,3913,MBU,Børnehuset Amaliegården,Byagervej,98,8330,Beder,56.055367,10.204917
+291,3918,MBU,Legepladsen Svendgård,Byvej,9,8330,Beder,56.058163,10.207541
+292,3932,MBU,Dagtilbud Grønnebakken,Præstetoften,1,8330,Beder,56.060956,10.2191352
+293,3935,MSO,Malling Plejehjem,Starupvej,9,8340,Malling,56.03561,10.1950458
+294,3942,MBU,Børnehaven Ajstrup Gl. Skole,Ajstrup Strandvej,1,8340,Malling,56.039638,10.2380549
+295,3943,MBU,Børnehuset Ajstrupvej,Ajstrupvej,47,8340,Malling,56.0383965,10.1999752
+296,3948,MBU,Børnehuset Østerskov,Mallinggårdsvej,6,8340,Malling,56.0426337,10.2062023
+297,3956,MBU,Børnehuset,Tværgade,3,8340,Malling,56.0378124,10.1967488
+298,3958,MBU,Integreret Institution,Eghovedvej,1,8340,Malling,56.042616,10.197569
+299,3960,MBU,Mariehønen,Bøgevangen,101,8355,Solbjerg,56.041222,10.089
+300,3962,MBU,Børnehuset,Bøgevangen,99,8355,Solbjerg,56.0412398,10.0889675
+301,3969,MBU,Kærgården,Kærgårdsvej,14-16,8355,Solbjerg,56.039898,10.086456
+302,3970,MBU,Fritidshjemmet,Kærgårdsvej,16,8355,Solbjerg,56.039465,10.086636
+303,3971,MBU,Spiren,Kærgårdsvej,39,8355,Solbjerg,56.039325,10.088269
+304,3978,MBU,Integreret Institution,Bavnebakken,111,8361,Hasselager,56.110115,10.082757
+305,3989,MBU,Højen,Kolt Østervej,49,8361,Hasselager,56.1101676,10.0777954
+306,3990,MBU,Troldehøjen,Kolt Østervej,51,8361,Hasselager,56.110712,10.078223
+307,3991,MBU,Labyrinten,Kolt Østervej,53,8361,Hasselager,56.111297,10.07811
+308,3992,MBU,Fritidshjem - Naturligvis,Koltvej,49,8361,Hasselager,56.10748,10.090144
+309,3994,MBU,Kolt Fritidsklub,Kunnerupvej,176,8361,Hasselager,56.109935,10.072476
+310,3998,MBU,Børnehuset Pilehytten,Pilegårdsvej,89,8361,Hasselager,56.106246,10.076184
+311,3999,MBU,Spiloppen,Pilegårdsvej,95,8361,Hasselager,56.106155,10.075249
+312,4009,MBU,Lindegården,Pannerupvej,9,8380,Trige,56.256402,10.155487
+313,4045,MBU,"Integreret Institution, Tilst",Venøvej,7,8381,Tilst,56.175684,10.112726
+314,4050,MBU,Smilehullet,Venøvej,9,8381,Tilst,56.17575,10.113405
+315,4053,MSB,Den Grønne Gren,Grønhøjvej,62,8462,Harlev J,56.145488,10.000956
+316,4057,MBU,Klub Midtpunkt,Næshøjvej,20,8462,Harlev J,56.14526,9.9936589
+317,4058,MBU,DII Regnbuen,Næshøjvej,22,8462,Harlev J,56.14524,9.992806
+318,4059,MBU,Kompasset,Rødlundvænget,37,8462,Harlev J,56.143057,9.985974
+319,4068,MBU,Den Integrerede Institution Børnehuset Søsterhøj,Elmehøjvej,2,8270,Højbjerg,56.103034,10.216937
+320,4085,MBU,Elstedgård,Elstedhøj,14A,8520,Lystrup,56.241525,10.232556
+321,4086,MBU,Børnehaven Hasselhøj,Elstedhøj,22A,8520,Lystrup,56.238511,10.232976
+322,4087,MBU,Minihøj,Elstedhøj,22B,8520,Lystrup,56.23823,10.233144
+323,4090,MBU,Hasselhaven,Hasselhaven,1,8520,Lystrup,56.2406678,10.237553
+324,4093,MBU,"Krokodillehaven, Elev",Koldkilde,9,8520,Lystrup,56.241114,10.1966249
+325,4094,MBU,Hurlumhejhuset,Lille Elstedvej,135,8520,Lystrup,56.233289,10.222176
+326,4095,MBU,Møllehuset,Lille Elstedvej,189,8520,Lystrup,56.235503,10.218246
+327,4097,MBU,Lystruplund,Lystruplund,36,8520,Lystrup,56.2290798,10.2328453
+328,4109,MBU,"Ørnereden , Børnehave",Ørnedalen,2,8520,Lystrup,56.2406465,10.225407
+329,4110,MBU,"Ørnedalen, Vuggestuen",Ørnedalen,4,8520,Lystrup,56.240756,10.225819
+330,4118,MBU,Solsikken,Kankbøllevej,12,8530,Hjortshøj,56.2456083,10.2711479
+331,4123,MBU,DII Spiren,Skovager,1,8530,Hjortshøj,56.245726,10.2738692
+332,4131,MBU,Engskovgård,Engskovgård,2,8541,Skødstrup,56.260007,10.30788
+333,4142,MBU,Bakkehuset,Kløvervangen,68,8541,Skødstrup,56.262516,10.299215
+334,4145,MBU,Myrhøjen,Ny Studstrupvej,3A,8541,Skødstrup,56.267039,10.310768
+335,4146,MBU,Børnehuset Myrhøjen,Ny Studstrupvej,3B,8541,Skødstrup,56.267506,10.310833
+336,4147,MBU,Væksthuset,Ny Studstrupvej,3C,8541,Skødstrup,56.267788,10.311359
+337,4154,MBU,Studsen,Studstrupvej,11A,8541,Skødstrup,56.257278,10.334633
+338,4169,MBU,Børnehuset,Jægergårdsgade,70,8000,Århus C,56.147542,10.201023
+339,4188,MBU,Legepladsen Skanseanlægget,Strandvejen,38,8000,Århus C,56.145536,10.207737
+340,4213,MBU,Vuggestuen Charlottehøj,Paludan Mullers Vej,185,8200,Århus N,56.179428,10.174261
+341,4222,MBU,Børnehaven Charlottehøj,Bornholmsvej,9,8210,Århus V,56.1770086,10.1756655
+342,4244,MBU,"Vuggestuen Kloden, pavillion",Gudrunsvej,66B,8220,Brabrand,56.155951,10.13761
+343,4245,MBU,Vuggestuen Janesvej,Janesvej,29A,8220,Brabrand,56.16563,10.134418
+344,4246,MBU,Integreret Institution Børnesnak,Louisevej,35A,8220,Brabrand,56.148874,10.138222
+345,4251,MBU,Vuggestuen Ved Æbletræet,Gammelgårdsvej,24A,8230,Åbyhøj,56.157086,10.157624
+346,4283,MBU,Vuggestuen Anemonen,Grøfthøjparken,147,8260,Viby J,56.122944,10.135043
+347,4295,MBU,Legepladsen Vidtskuevej,Vidtskuevej,25,8260,Viby J,56.1279935,10.1771144
+348,4297,MBU,Børnehaven Store Rygaard,Elverdalsvej,46,8270,Højbjerg,56.1128181,10.1984128
+349,4299,MBU,Vuggestuen Lyseng,Hjulbjergvej,121,8270,Højbjerg,56.112626,10.1848417
+350,4318,MBU,Børnehuset Mirabellen,Borrevænget,28,8320,Mårslet,56.070464,10.164504
+351,4325,MBU,Vuggestuen Bymosen,Byagervej,164,8330,Beder,56.05361,10.212778
+352,4326,MBU,Beder Fritidsklub,Kirkebakken,41,8330,Beder,56.060383,10.215753
+353,4338,MBU,Børnehaven Rødlundvænget,Rødlundvænget,35,8462,Harlev J,56.142772,9.986755
+354,4340,MBU,Børnehaven Næshøj,Sydbakken,6,8462,Harlev J,56.142111,9.998583
+355,4351,MBU,Børnegården Bifrost,Østergårdtoften,1,8530,Hjortshøj,56.250632,10.2688096
+356,4355,MBU,Vuggestuen Kløvervangen,Kløvervangen,64,8541,Skødstrup,56.262823,10.2990872
+357,4375,MBU,DII Skødstrup,Stationsvangen,10,8541,Skødstrup,56.2620568,10.3045596
+358,4452,MBU,DII Børneslottet,Albert Naursvej,19-23,8270,Højbjerg,56.1158134,10.20101
+359,4755,MBU,Idrætsbørnehaven,Gudrunsvej,3B,8220,Brabrand,56.158681,10.141619
+360,4926,MSO,Plejeboligerne Augustenborggade,Augustenborggade,25,8000,Århus C,56.143856,10.179791
+361,4945,MSB,Skansen,Strandvejen,36,8000,Århus C,56.1457887,10.2084618
+362,4955,MSB,Sølyst,Nordre Strandvej,155,8240,Risskov,56.2024178,10.265996
+363,4960,MSB,Rejsecafeen,Museumsgade,2,8000,Århus C,56.1564943,10.1988909
+364,4970,MSB,Rådgivningscafeen Aros,Grønnegade,80,8000,Århus C,56.160756,10.2001345
+365,4975,MSB,Aktivitetscenter Bøgeskovgård,Bøgeskov Høvej,5,8260,Viby J,56.118497,10.132017
+366,4984,MSB,Turbo,Korsagervej,15,8230,Åbyhøj,56.146745,10.1622869
+367,4986,MSO,Demenscentrum Århus,Kannikegade,18,8000,Århus C,56.155422,10.211219
+368,4997,MSB,Ungdomsstøtte Center,Alstrup Alle,3,8361,Hasselager,56.1048823,10.0956201
+369,5017,MSB,Haslekollegiet,Provstebakken,30,8210,Århus V,56.163026,10.1642119
+370,5035,MBU,DII Grøften,Grøfthøjparken,2,8260,Viby J,56.122389,10.141622
+371,5046,MBU,Børnehaven Malmøgade,Malmøgade,10,8200,Århus N,56.1801828,10.1965009
+372,5074,MBU,Institutionen Skæring Parkvej,Skæring Parkvej,544,8250,Egå,56.23707,10.303355
+373,5096,MBU,Tryllefløjten,Vistoftvej,36B,8471,Sabro,56.211847,10.03872
+374,5104,MBU,"Rosengården, Dagtilbud 1205, 1206 og 1207",Rosenstien,2,8000,Århus C,56.157105,10.187765
+375,5154,MBU,Lindegården Vuggestuen,Pannerupvej,7,8380,Trige,56.256253,10.15516
+376,5157,MBU,Fritidshjemmet Sabro Skolevej,Sabro Skolevej,2,8471,Sabro,56.211442,10.022634
+377,5158,MBU,DII Tumlehuset,Observatorievejen,1,8000,Århus C,56.127671,10.193164
+378,5159,MBU,Hårup Børnegård,Salonikivej,26,8530,Hjortshøj,56.286973,10.214325
+379,5162,MBU,Todbjerg Børnehus,Bøggildsvej,22,8530,Hjortshøj,56.2694427,10.2108959
+380,5166,MBU,Vuggestuen Godthåb,Elsted Byvej,36,8520,Lystrup,56.244139,10.23172
+381,5167,MBU,Vuggestuen,Dr. Holsts Vej,52,8230,Åbyhøj,56.160203,10.145158
+382,5171,MBU,Klub2teket,Kappelvænget,52,8210,Århus V,56.180041,10.1626809
+383,5217,MBU,Mårslet Fritidsklub,Testrupvej,6,8320,Mårslet,56.068166,10.156612
+384,5257,MBU,Legepladsen Sabro,Vistoftvej,30,8471,Sabro,56.210858,10.0388059
+385,5344,MBU,Dagplejehuset,Grankoglevej,10,8541,Skødstrup,56.2761743,10.3136088
+386,5347,MBU,Dagtilbud 108,Falstersgade,35,8000,Århus C,56.163782,10.1997016
+387,5350,MBU,Dagtilbud 108,Langelandsgade,62,8000,Århus C,56.163436,10.198443
+388,5402,MBU,Børnehuset Moltkesvej,Moltkesvej,2,8260,Viby J,56.121165,10.14958
+389,5431,MKB,Århus Svømmestadion,F. Vestergaards Gade,5,8000,Århus C,56.143829,10.196658
+390,5440,MBU,Børnehuset Nymarken,Nymarks Allé,1,8320,Mårslet,56.061377,10.1562
+391,5442,MKB,Lyseng Svømmebad,Lysengvej,4,8270,Højbjerg,56.112244,10.191191
+392,5456,MSB,Mariendals Grønne Værksted,Ørnevænget,37,8330,Beder,56.050407,10.26242
+393,5463,MBU,Bodøgården,Bodøvej,96,8200,Århus N,56.180129,10.180856
+394,5486,MSB,Socialpsykiatri - Windsor,Skolebakken,17,8000,Århus C,56.158064,10.213024
+395,5488,MBU,Safiren,Helenelyst,70,8220,Brabrand,56.1610914,10.0951321
+396,5492,MBU,Legepladsen Søndergård,Lystrupvej,262,8520,Lystrup,56.238258,10.228547
+397,5494,MBU,Dagtilbud Nørrebro,Østboulevarden,9-11,8000,Århus C,56.1638412,10.2136289
+398,5524,MBU,UNO-Fritidscenter,Marienlundvej,11,8240,Risskov,56.179335,10.222813
+399,5528,MBU,Den Integrerede Institution Hobitten ,Septembervej ,23,8210,Århus V,56.176622,10.153573
+400,6030,MSO,Plejecenter - Ceres Alle,Ceres Alle,13,8000,Århus C,56.154266,10.189673
+401,6136,MSB,Alkohol Rådgivningen,Jægergårdsgade,66,8000,Århus C,56.148044,10.2012319
+402,6242,MKB,Gellerup Bibliotek,Gudrunsvej,78,8220,Brabrand,56.1554775,10.1343281
+403,6245,MTM,Planlægning og Byggeri,Kalkværksvej,10,8000,Århus C,56.1504819,10.2116996
+404,6247,MBU,Klubben Holme Søndergård,Nygårdsvej,5,8270,Højbjerg,56.1102,10.173792
+405,6262,MBU,Afdeling,Ny Studstrupvej,3D,8541,Skødstrup,56.267636,10.312161
+406,6263,MSB,Bofælleskab Skødstrup,Tronkærgårdsvej ,102,8541,Skødstrup,56.2649354,10.2981183
+407,6265,MKB,Egå Bibliotek,Egå Havvej,5,8250,Egå,56.211717,10.283211
+408,6266,MSO,Hjælpemiddelcentralen,Sintrupvej,15-17,8220,Brabrand,56.16689,10.113454
+409,6295,MSO,Vestervang Plejeboliger,Vestervang,42,8000,Århus C,56.16469,10.195165
+410,6353,MSO,Sif-gården,Thorsvej,2,8230,Åbyhøj,56.154882,10.165527
+411,6356,MBU,Næringen 99,næringen,99,8200,Århus N,56.1954069,10.1973364
+412,6361,MBU,Daginstitutionen Vidstkuevej,Vidtskuevej,25,8260,Viby J,56.1279935,10.1771144
+413,6363,MBU,Børnehuset Indelukket,Indelukket,5,8520,Lystrup,56.241406,10.246252
+414,6366,MKB,Godsbanen - Kulturproduktionscenter,Skovgaardsgade,3-5,8000,Århus C,56.154061,10.194996
+415,6367,MSO,Folkestedet,Carl Blochs Gade,28,8000,Århus C,56.1551776,10.1937224
+416,6368,MSO,Madsbjerg,Nygårdsvej,2,8270,Højbjerg,56.1098,10.17616
+417,6372,MSB,Sumatravej 3,sumatravej,3 ,8000,Århus C,56.141881,10.208443
+418,6382,MSO,OK-Fonden Egå,Egå Mosevej,27,8250,Egå,56.2164281,10.2617962
+419,6384,MSO,Plejeboliger Hedevej,Hedevej,50,8240,Risskov,56.205031,10.239252
+420,6395,MSB,Ryhave Kollegiet MSB,Bispehavevej,1,8210,Århus V,56.167435,10.1597069
+421,6400,MSB,Hotspotcentret,Hasle Centervej,215,8210,Århus V,56.16653,10.154639
+422,6402,MBU,Legepladsen (underopkoblet fra Klub2teket),Kappelvænget ,52,8210,Århus V,56.180041,10.1626809
+423,6405,MBU,Ellekjær Fritidscenter,Rytoften,42,8210,Århus V,56.1672086,10.151385
+424,6414,MKB,DOKK1,Hack Kampmanns Plads ,2,8000,Århus C,56.1535428,10.2141811
+425,6418,MBU,Vestermarken,Vestermarken,2,8260,Viby J,56.1280088,10.1122444
+426,6423,MSB,Autismecenteret,Havkærparken,47,8381,Tilst,56.1860959,10.1168926
+427,6425,MSB,Rundbuehallen,Værkmestergade,13A,8000,Århus C,56.149756,10.20811
+428,6426,MSB,Vintervej,Vintervej,96,8210,Århus V,56.1765617,10.1497933
+429,6434,MSB,Plejeboligerne Engelstoft,Engelstoft,121-127 146-160,8520,Lystrup,56.2354219,10.1949458
+430,6438,MSB,Sundhedshuset,Jettesvej,10A,8220,Brabrand,56.1578254,10.1320686
+431,6440,MBU,Dagplejehuset,Grønløkke Allé,5,8310,Tranbjerg J,56.092121,10.130455
