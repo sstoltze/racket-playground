@@ -6,7 +6,8 @@
 (provide (all-defined-out))
 
 ;; Real-time traffic data
-(define base-url       "https://admin.opendata.dk")
+(define base-url
+  "https://admin.opendata.dk")
 (define metadata-start
   "/api/3/action/datastore_search?resource_id=c3097987-c394-4092-ad1d-ad86a81dbf37")
 (define data-start
