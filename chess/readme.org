@@ -1,0 +1,6 @@
+#+AUTHOR: Simon Stoltze
+#+EMAIL: sstoltze@gmail.com
+#+DATE: 2020-12-20
+#+OPTIONS: toc:nil title:nil author:nil email:nil date:nil creator:nil
+* Chess board
+Following [[https://alex-hhh.github.io/2018/10/chess-game-using-racket-s-pasteboard.html]]
