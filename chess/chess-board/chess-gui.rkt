@@ -19,6 +19,16 @@
 
     (send this set-snipclass chess-piece-snip-class)
 
+    ;; The pieces will keep track of when they are selected and change how they are drawn
+    (define selected? #f)
+
+    (define/public (set-selected on?)
+      (set! selected? on?)
+      ;; Tell the current administrator that this snip needs to be redrawn
+      (let ([admin (send this get-admin)])
+        (when admin
+          (send admin needs-update this 0 0 size size))))
+
     ;; Defines the size of the snip
     (define/override (get-extent dc x y width height descent space lspace rspace)
       ;; We only care about width and height
@@ -33,7 +43,9 @@
 
     (define/override (draw dc x y . other)
       (send dc set-font font)
-      (send dc set-text-foreground "black")
+      (if selected?
+          (send dc set-text-foreground "red")
+          (send dc set-text-foreground "black"))
       (define-values (glyph-width glyph-height baseline extra-space)
         (send dc get-text-extent glyph font #t))
       (let ([dx (/ (- size glyph-width) 2)]
@@ -41,20 +53,45 @@
         (send dc draw-text glyph (+ x dx) (+ y dy))))))
 
 (define chess-board%
-  (class pasteboard%
+  (class (chess-board-mixin pasteboard%)
     (super-new)
+
+    ;; Disable drag-select
+    (send this set-area-selectable #f)
+
+    (send this set-selection-visible #f)
 
     ;; Used for highlighting the location under the cursor when dragging a piece
     (define highlight-location #f)
     (define drag-dx 0)
     (define drag-dy 0)
 
+    ;; Locations to highlight
+    (define valid-move-locations '())
+    (define opponent-move-locations '())
+
+    (define turn 'white)
+
+    (define/augment (can-interactive-move? event)
+      (define piece (send this find-next-selected-snip #f))
+      (unless (eq? turn (send piece get-colour))
+        (set-message (format "It's ~a turn to move"
+                             (if (eq? turn 'white) "white's" "black's"))))
+      (eq? turn (send piece get-colour)))
+
     ;; When redrawing, draw black squares before adding snips
     (define/override (on-paint before? dc . _)
-      (when before?
-        (draw-chess-board dc)
-        (when highlight-location
-          (highlight-square dc highlight-location #f "indianred"))))
+      (if before?
+          (begin
+            (draw-chess-board dc)
+            (for ([location (in-list valid-move-locations)])
+              (highlight-square dc location #f "seagreen"))
+            (for ([location (in-list opponent-move-locations)])
+              (highlight-square dc location "firebrick" #f))
+            (when highlight-location
+              (highlight-square dc highlight-location #f "indianred")))
+          (when message
+            (display-message dc message))))
 
     ;; After a piece is added, position it correctly
     (define/augment (after-insert chess-piece . _)
@@ -63,11 +100,43 @@
     ;; Redraw board when resized
     (define/augment (on-display-size)
       (send this begin-edit-sequence)
-      (let loop ([snip (send this find-first-snip)])
-        (when snip
-          (position-piece this snip)
-          (loop (send snip next))))
+      (for ([piece (in-list (send this get-pieces))])
+        (position-piece this piece))
       (send this end-edit-sequence))
+
+    ;; No editing
+    (define/override (can-do-edit-operation? op recursive?)
+      #f)
+
+    (define/augment (after-select snip on?)
+      (send snip set-selected on?)
+      (if on?
+          (begin
+            (unless (eq? turn (send snip get-colour))
+              (set-message (format "It's ~a turn to move"
+                                   (if (eq? turn 'white) "white's" "black's"))))
+            ;; Move the snip to the front when selecting, so it is kept on top
+            (send this set-before snip #f)
+            ;; If more than one snip is selected, only keep one
+            (let ([other-selected-snips
+                   (let loop ([other (send this find-next-selected-snip #f)]
+                              [result '()])
+                     (if other
+                         (let ([next (send this find-next-selected-snip other)])
+                           (if (equal? snip other)
+                               (loop next result)
+                               (loop next (cons other result))))
+                         result))])
+              (for ([snip other-selected-snips])
+                (send this remove-selected snip)))
+            (set! valid-move-locations (send snip valid-moves this))
+            (set! opponent-move-locations (send this collect-moves
+                                                (if (eq? (send snip get-colour) 'white)
+                                                    'black
+                                                    'white))))
+          (begin
+            (set! valid-move-locations '())
+            (set! opponent-move-locations '()))))
 
     (define/augment (on-interactive-move event)
       (define piece (send this find-next-selected-snip #f))
@@ -85,33 +154,75 @@
 
     (define/augment (after-interactive-move event)
       (set! highlight-location #f)
-      (send (send this get-canvas) refresh)
       (define piece (send this find-next-selected-snip #f))
       (define location (xy->location this (send event get-x) (send event get-y)))
-      (let ([target-piece (piece-at-location this location)])
-        (when (and target-piece
-                   (not (eq? target-piece piece)))
-          (send target-piece set-location #f)
-          (send this remove target-piece)))
-      (send piece set-location location)
-      (position-piece this piece))))
+      (define valid-moves (send piece valid-moves this))
+      (when (member location valid-moves)
+        (let ([target-piece (send this piece-at-location location)])
+          (when (and target-piece
+                     (not (eq? target-piece piece)))
+            (send target-piece set-location #f)
+            (send this remove target-piece)))
+        ;; Update the piece position *after* possibly removing the old piece
+        (send piece set-location location)
+        (set! turn (if (eq? turn 'white) 'black 'white)))
+      (position-piece this piece)
+      (set! valid-move-locations (send piece valid-moves this))
+      (send (send this get-canvas) refresh))
+
+    ;; Disable keys by creating a new keymap
+    (define (on-disabled-key-event data event)
+      (if (is-a? event key-event%)
+          (let* ([code (send event get-key-code)]
+                 [key-name (cond ((symbol? code) (symbol->string code))
+                                 ((equal? code #\backspace) "backspace")
+                                 ((equal? code #\rubout) "delete")
+                                 ((equal? code #\space) "space")
+                                 ((equal? code #\return) "return")
+                                 (#t (string code)))])
+            (set-message (format "~a key is disabled" key-name)))
+          (set-message "event is discarded")))
+
+    (define k (new keymap%))
+    (send k add-function "ignore" on-disabled-key-event)
+    (send k map-function "up" "ignore")
+    (send k map-function "down" "ignore")
+    (send k map-function "left" "ignore")
+    (send k map-function "right" "ignore")
+    (send k map-function "del" "ignore")
+    (send k map-function "backspace" "ignore")
+    ;; Instead of setting a keymap, you could override the on-char method
+    ;; But this is apparently hard to do correctly, so this is the easy solution
+    (send this set-keymap k)
+
+    ;; Do not insert a new chess-piece if it is not valid
+    ;; i.e. not a chess-piece, does not have a location set or the space is occupied
+    (define/augment (can-insert? snip . rest)
+      (and (is-a? snip chess-piece-snip%)
+           (send snip get-location)
+           (not (send this piece-at-location (send snip get-location)))))
+
+    (define message #f)
+    (define message-timer (new timer%
+                               [notify-callback (lambda ()
+                                                  (set! message #f)
+                                                  (send (send this get-canvas) refresh))]))
+
+    (define (set-message m)
+      (set! message m)
+      (send message-timer start 2000)
+      (send (send this get-canvas) refresh))))
 
 (define (make-chess-piece-snip id [location #f])
-  (define glyph (hash-ref chess-piece-glyphs id))
+  (match-define (cons glyph moves) (hash-ref chess-piece-data id))
   (define font (send the-font-list find-or-create-font 20 'default 'normal 'normal))
   (new chess-piece-snip%
+       [name id]
        [glyph (string glyph)]
        [font font]
        [size 35]
+       [moves moves]
        [location location]))
-
-(define (piece-at-location board location)
-  (let loop ([snip (send board find-first-snip)])
-    (if snip
-        (if (equal? location (send snip get-location))
-            snip
-            (loop (send snip next)))
-        #f)))
 
 (define (draw-chess-board dc)
   (define brush (send the-brush-list find-or-create-brush "gray" 'solid))
@@ -130,7 +241,7 @@
   ;; Draw black squares
   (for* ([row (in-range 8)]
          [col (in-range 8)]
-         #:when (or (and (odd? row) (even? col))
+         #:when (or (and (odd? row)  (even? col))
                     (and (even? row) (odd? col))))
     (define-values (x y) (values (* col cell-width) (* row cell-height)))
     (send dc draw-rectangle x y cell-width cell-height))
@@ -149,17 +260,32 @@
                  (- (/ cell-width 2) (/ 2 2))))
     (send dc draw-text file x (- dc-height h margin))))
 
-(define (highlight-square dc location color-name border-color-name)
+(define (display-message dc message)
+  (define font (send the-font-list find-or-create-font 24 'default 'normal 'normal))
+  (define-values (w h _1 _2) (send dc get-text-extent message font #t))
+  (define-values (dc-width dc-height) (send dc get-size))
+  (define-values (x y) (values (/ (- dc-width w) 2) (/ (- dc-height h) 2)))
+
+  (define brush (send the-brush-list find-or-create-brush "bisque" 'solid))
+  (define pen (send the-pen-list find-or-create-pen "black" 1 'transparent))
+  (send dc set-brush brush)
+  (send dc set-pen pen)
+  (send dc draw-rectangle 0 y dc-width h)
+  (send dc set-font font)
+  (send dc set-text-foreground "firebrick")
+  (send dc draw-text message x y))
+
+(define (highlight-square dc location colour-name border-colour-name)
   (define-values (rank file) (location->rank-file location))
   (define brush
-    (if color-name
-        (let* ([base (send the-color-database find-color color-name)]
-               [color (make-object color% (send base red) (send base green) (send base blue) 0.3)])
-          (send the-brush-list find-or-create-brush color 'solid))
+    (if colour-name
+        (let* ([base (send the-color-database find-color colour-name)]
+               [colour (make-object color% (send base red) (send base green) (send base blue) 0.3)])
+          (send the-brush-list find-or-create-brush colour 'solid))
         (send the-brush-list find-or-create-brush "black" 'transparent)))
   (define pen
-    (if border-color-name
-        (send the-pen-list find-or-create-pen border-color-name 2 'solid)
+    (if border-colour-name
+        (send the-pen-list find-or-create-pen border-colour-name 2 'solid)
         (send the-pen-list find-or-create-pen "black" 1 'transparent)))
   (send dc set-pen pen)
   (send dc set-brush brush)
