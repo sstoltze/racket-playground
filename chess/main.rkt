@@ -1,5 +1,4 @@
 #lang racket
-
 (require racket/gui
          embedded-gui)
 
@@ -34,9 +33,9 @@
       (send dc set-text-foreground "black")
       (define-values (glyph-width glyph-height baseline extra-space)
         (send dc get-text-extent glyph font #t))
-      (let ([ox (/ (- size glyph-width) 2)]
-            [oy (/ (- size glyph-height) 2)])
-        (send dc draw-text glyph (+ x ox) (+ y oy))))
+      (let ([dx (/ (- size glyph-width) 2)]
+            [dy (/ (- size glyph-height) 2)])
+        (send dc draw-text glyph (+ x dx) (+ y dy))))
 
     (define/public (set-location l) (set! location l))
     (define/public (get-location) location)))
