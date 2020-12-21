@@ -44,10 +44,18 @@
 (define chess-board%
   (class pasteboard%
     (super-new)
+
+    ;; Used for highlighting the location under the cursor when dragging a piece
+    (define highlight-location #f)
+    (define drag-dx 0)
+    (define drag-dy 0)
+
     ;; When redrawing, draw black squares before adding snips
     (define/override (on-paint before? dc . _)
       (when before?
-        (draw-chess-board dc)))
+        (draw-chess-board dc)
+        (when highlight-location
+          (highlight-square dc highlight-location #f "indianred"))))
 
     ;; After a piece is added, position it correctly
     (define/augment (after-insert chess-piece . _)
@@ -60,7 +68,34 @@
         (when snip
           (position-piece this snip)
           (loop (send snip next))))
-      (send this end-edit-sequence))))
+      (send this end-edit-sequence))
+
+    (define/augment (on-interactive-move event)
+      (define piece (send this find-next-selected-snip #f))
+      (define-values (x y) (values (box 0) (box 0)))
+      (send this get-snip-location piece x y #f)
+      (set! drag-dx (- (send event get-x) (unbox x)))
+      (set! drag-dy (- (send event get-y) (unbox y))))
+
+    (define/augment (on-move-to snip x y dragging?)
+      (when dragging?
+        (let ([location (xy->location this (+ x drag-dx) (+ y drag-dy))])
+          (unless (equal? highlight-location location)
+            (set! highlight-location location)
+            (send (send this get-canvas) refresh)))))
+
+    (define/augment (after-interactive-move event)
+      (set! highlight-location #f)
+      (send (send this get-canvas) refresh)
+      (define piece (send this find-next-selected-snip #f))
+      (define location (xy->location this (send event get-x) (send event get-y)))
+      (let ([target-piece (piece-at-location this location)])
+        (when (and target-piece
+                   (not (eq? target-piece piece)))
+          (send target-piece set-location #f)
+          (send this remove target-piece)))
+      (send piece set-location location)
+      (position-piece this piece))))
 
 (define chess-piece-glyphs
   (hash
@@ -73,6 +108,14 @@
   (define glyph (hash-ref chess-piece-glyphs id))
   (define font (send the-font-list find-or-create-font 20 'default 'normal 'normal))
   (new chess-piece% [glyph (string glyph)] [font font] [size 35] [location location]))
+
+(define (piece-at-location board location)
+  (let loop ([snip (send board find-first-snip)])
+    (if snip
+        (if (equal? location (send snip get-location))
+            snip
+            (loop (send snip next)))
+        #f)))
 
 (define (draw-chess-board dc)
   (define brush (send the-brush-list find-or-create-brush "gray" 'solid))
@@ -98,13 +141,37 @@
 
   ;; Draw rank and file on the board
   (for ([(rank index) (in-indexed '("8" "7" "6" "5" "4" "3" "2" "1"))])
-    (define-values (_0 h _1 _2) (send dc get-text-extent rank font #t))
-    (define y (+ (* index cell-height) (- (/ cell-height 2) (/ h 2))))
+    (define-values (_0 h _1 _2)
+      (send dc get-text-extent rank font #t))
+    (define y (+ (* index cell-height)
+                 (- (/ cell-height 2) (/ h 2))))
     (send dc draw-text rank margin y))
   (for ([(file index) (in-indexed '("a" "b" "c" "d" "e" "f" "g" "h"))])
-    (define-values (w h _1 _2) (send dc get-text-extent file font #t))
-    (define x (+ (* index cell-width) (- (/ cell-width 2) (/ 2 2))))
+    (define-values (w h _1 _2)
+      (send dc get-text-extent file font #t))
+    (define x (+ (* index cell-width)
+                 (- (/ cell-width 2) (/ 2 2))))
     (send dc draw-text file x (- dc-height h margin))))
+
+(define (highlight-square dc location color-name border-color-name)
+  (define-values (rank file) (location->rank-file location))
+  (define brush
+    (if color-name
+        (let* ([base (send the-color-database find-color color-name)]
+               [color (make-object color% (send base red) (send base green) (send base blue) 0.3)])
+          (send the-brush-list find-or-create-brush color 'solid))
+        (send the-brush-list find-or-create-brush "black" 'transparent)))
+  (define pen
+    (if border-color-name
+        (send the-pen-list find-or-create-pen border-color-name 2 'solid)
+        (send the-pen-list find-or-create-pen "black" 1 'transparent)))
+  (send dc set-pen pen)
+  (send dc set-brush brush)
+  (define-values (dc-width dc-height)
+    (send dc get-size))
+  (define-values (cell-width cell-height)
+    (values (/ dc-width 8) (/ dc-height 8)))
+  (send dc draw-rectangle (* file cell-width) (* rank cell-height) cell-width cell-height))
 
 ;; Translates a location ("a1", ..., "h8") into a (rank file) pair (both numbers 0, ... 7)
 (define (location->rank-file location)
@@ -117,6 +184,25 @@
   (unless (and rank file)
     (raise-argument-error 'location "valid chess position a1 .. h8" location))
   (values rank file))
+
+(define (rank-file->location rank file)
+  (unless (<= 0 rank 8)
+    (raise-argument-error 'rank "integer between 0 and 7" rank))
+  (unless (<= 0 file 8)
+    (raise-argument-error 'rank "integer between 0 and 7" file))
+  (string
+   (list-ref '(#\a #\b #\c #\d #\e #\f #\g #\h) file)
+   (list-ref '(#\8 #\7 #\6 #\5 #\4 #\3 #\2 #\1) rank)))
+
+(define (xy->location board x y)
+  (define-values (canvas-width canvas-height)
+    (let ([c (send board get-canvas)])
+      (send c get-size)))
+  (define-values (square-width square-height)
+    (values (/ canvas-width 8) (/ canvas-height 8)))
+  (define-values (rank file)
+    (values (exact-truncate (/ y square-height)) (exact-truncate (/ x square-width))))
+  (rank-file->location rank file))
 
 ;; Use FEN for the board instead of the suggested notation
 (define (fen-string->pieces fen)
