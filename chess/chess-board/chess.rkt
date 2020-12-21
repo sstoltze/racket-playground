@@ -1,6 +1,15 @@
 #lang racket
-(provide (all-defined-out))
 ;; All pure chess-piece logic goes here
+(provide chess-piece-mixin
+         chess-board-mixin
+         location->rank-file
+         rank-file->location
+         fen-string->pieces
+         chess-piece-data
+         initial-fen
+         initial-pieces
+         print-board)
+
 (define (chess-piece-mixin %)
   (class %
     (init-field name glyph moves [location #f])
@@ -13,6 +22,8 @@
 
     (define/public (set-location l) (set! location l))
     (define/public (get-location) location)
+
+    (define/public (get-glyph) glyph)
 
     (define/public (valid-moves board)
       (if location
@@ -60,9 +71,9 @@
   (values rank file))
 
 (define (rank-file->location rank file)
-  (unless (<= 0 rank 8)
+  (unless (<= 0 rank 7)
     (raise-argument-error 'rank "integer between 0 and 7" rank))
-  (unless (<= 0 file 8)
+  (unless (<= 0 file 7)
     (raise-argument-error 'rank "integer between 0 and 7" file))
   (string
    (list-ref '(#\a #\b #\c #\d #\e #\f #\g #\h) file)
@@ -211,3 +222,17 @@
    "b" (cons #\u265D (bishop-moves 'black))
    "n" (cons #\u265E (knight-moves 'black))
    "p" (cons #\u265F (pawn-moves 'black))))
+
+(define (print-board board)
+  (for ([rank (in-range 8)])
+    (for ([file (in-range 8)])
+      (define location (rank-file->location rank file))
+      (define piece (send board piece-at-location location))
+      (printf "~A"
+              (if piece
+                  (send piece get-glyph)
+                  (if (or (and (odd? rank)  (even? file))
+                          (and (even? rank) (odd? file)))
+                      #\u25A0
+                      #\u25A1))))
+    (printf "~%")))
