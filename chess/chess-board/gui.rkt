@@ -2,7 +2,8 @@
 (require racket/gui
          embedded-gui
          "main.rkt")
-(provide make-chess-board
+(provide (all-from-out "main.rkt")
+         make-chess-board
          make-chess-piece)
 
 ;; Snips need a class

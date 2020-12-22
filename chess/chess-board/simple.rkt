@@ -1,6 +1,7 @@
 #lang racket
 (require "main.rkt")
-(provide make-chess-piece
+(provide (all-from-out "main.rkt")
+         make-chess-piece
          make-chess-board)
 
 (define simple-chess-piece% (chess-piece-mixin object%))
