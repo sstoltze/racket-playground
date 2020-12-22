@@ -1,4 +1,2 @@
 install:
-	raco pkg install brag
-	raco pkg install ./kanren
-	raco pkg install ./chess/chess-board
+	raco pkg install --skip-installed brag ./kanren ./chess/chess-board
