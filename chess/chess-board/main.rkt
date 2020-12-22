@@ -8,11 +8,10 @@
          chess-piece-data
          initial-fen
          initial-pieces
-         print-board
          setup-board)
 
 (define (chess-piece-mixin %)
-  (class %
+  (class* % (printable<%>)
     (init-field name glyph moves [location #f])
     (super-new)
 
@@ -29,7 +28,14 @@
     (define/public (valid-moves board)
       (if location
           (moves board location)
-          '()))))
+          '()))
+
+    (define/public (custom-print port quoting-depth)
+      (print (~a glyph) port))
+    (define/public (custom-write port)
+      (write (~a glyph) port))
+    (define/public (custom-display port)
+      (display (~a glyph) port))))
 
 (define (chess-board-mixin %)
   (define new-% (if (method-in-interface? 'insert (class->interface %))
@@ -40,7 +46,7 @@
                         (inner (void) after-insert . rest))
                       (define/pubment (after-insert . rest)
                         (void)))))
-  (class new-%
+  (class* new-% (printable<%>)
     (super-new)
 
     (init-field [turn 'white])
@@ -69,7 +75,29 @@
       (remove-duplicates
        (for/fold ([moves '()])
                  ([piece (in-list opponent-pieces)])
-         (append (send piece valid-moves this) moves))))))
+         (append (send piece valid-moves this) moves))))
+
+    (define black-square #\u25A0)
+    (define white-square #\u25A1)
+
+    ;; These should probably be improved
+    (define/public (custom-print port quoting-depth)
+      (write-string "#<chess-board>" port))
+    (define/public (custom-write port)
+      (write-string "#<chess-board>") port)
+    (define/public (custom-display port)
+      (for ([rank (in-range 8)])
+        (for ([file (in-range 8)])
+          (define location (rank-file->location rank file))
+          (define piece (send this piece-at-location location))
+          (display (if piece
+                       (send piece get-glyph)
+                       (if (or (and (odd? rank)  (even? file))
+                               (and (even? rank) (odd? file)))
+                           black-square
+                           white-square))
+                   port))
+        (display "\n" port)))))
 
 ;; Translates a location ("a1", ..., "h8") into a (rank file) pair (both numbers 0, ... 7)
 (define (location->rank-file location)
@@ -118,20 +146,6 @@
     ;; FEN starts at the top of the board, so the first line is rank 8
     (append (fen-row->pieces (- 8 rank) row)
             pieces)))
-
-(define (print-board board)
-  (for ([rank (in-range 8)])
-    (for ([file (in-range 8)])
-      (define location (rank-file->location rank file))
-      (define piece (send board piece-at-location location))
-      (printf "~A"
-              (if piece
-                  (send piece get-glyph)
-                  (if (or (and (odd? rank)  (even? file))
-                          (and (even? rank) (odd? file)))
-                      #\u25A0
-                      #\u25A1))))
-    (printf "~%")))
 
 (define (setup-board board fen-string chess-piece-constructor)
   (for ([piece (in-list (fen-string->pieces fen-string))])
