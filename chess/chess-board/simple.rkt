@@ -1,5 +1,7 @@
-#lang racket
-(require "main.rkt")
+#lang racket/base
+(require racket/class
+         racket/match
+         "main.rkt")
 (provide (all-from-out "main.rkt")
          make-chess-piece
          make-chess-board)

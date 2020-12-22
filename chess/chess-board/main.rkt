@@ -1,5 +1,10 @@
-#lang racket
+#lang racket/base
 ;; All pure chess-piece logic goes here
+(require racket/class
+         racket/format
+         racket/list
+         racket/string
+         racket/match)
 (provide chess-piece-mixin
          chess-board-mixin
          location->rank-file
