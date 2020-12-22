@@ -324,11 +324,6 @@
           (+ square-x (/ (- square-width piece-width) 2))
           (+ square-y (/ (- square-height piece-height) 2)))))
 
-(define (setup-board board fen-string)
-  (send board clear)
-  (for ([piece (in-list (fen-string->pieces fen-string))])
-    (send board insert (apply make-chess-piece-snip piece))))
-
 (define board (new chess-board%))
 (define frame (new frame%
                    [label "Chess Board"]
@@ -340,5 +335,5 @@
                     [horizontal-inset 0]
                     [vertical-inset 0]
                     [editor board]))
-(setup-board board initial-fen)
+(setup-board board initial-fen make-chess-piece-snip)
 (send frame show #t)

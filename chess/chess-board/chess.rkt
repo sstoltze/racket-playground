@@ -8,7 +8,8 @@
          chess-piece-data
          initial-fen
          initial-pieces
-         print-board)
+         print-board
+         setup-board)
 
 (define (chess-piece-mixin %)
   (class %
@@ -31,20 +32,27 @@
           '()))))
 
 (define (chess-board-mixin %)
-  (class %
+  (define new-% (if (method-in-interface? 'insert (class->interface %))
+                    %
+                    (class %
+                      (super-new)
+                      (define/pubment (insert . rest)
+                        (inner (void) after-insert . rest))
+                      (define/pubment (after-insert . rest)
+                        (void)))))
+  (class new-%
     (super-new)
 
     (define pieces '())
-    (define/augment (after-insert chess-piece . _)
+
+    (define/augment (after-insert chess-piece . args)
       (set! pieces (cons chess-piece pieces)))
 
     (define/public (get-pieces)
       pieces)
 
     (define/public (piece-at-location location)
-      (let ([ps (filter (lambda (p)
-                          (equal? (send p get-location)
-                                  location))
+      (let ([ps (filter (lambda (p) (equal? (send p get-location) location))
                         pieces)])
         (if (empty? ps)
             #f
@@ -105,6 +113,24 @@
     ;; FEN starts at the top of the board, so the first line is rank 8
     (append (fen-row->pieces (- 8 rank) row)
             pieces)))
+
+(define (print-board board)
+  (for ([rank (in-range 8)])
+    (for ([file (in-range 8)])
+      (define location (rank-file->location rank file))
+      (define piece (send board piece-at-location location))
+      (printf "~A"
+              (if piece
+                  (send piece get-glyph)
+                  (if (or (and (odd? rank)  (even? file))
+                          (and (even? rank) (odd? file)))
+                      #\u25A0
+                      #\u25A1))))
+    (printf "~%")))
+
+(define (setup-board board fen-string chess-piece-constructor)
+  (for ([piece (in-list (fen-string->pieces fen-string))])
+    (send board insert (apply chess-piece-constructor piece))))
 
 (define initial-fen "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR")
 (define initial-pieces (fen-string->pieces initial-fen))
@@ -215,24 +241,9 @@
    "B" (cons #\u2657 (bishop-moves 'white))
    "N" (cons #\u2658 (knight-moves 'white))
    "P" (cons #\u2659 (pawn-moves 'white))
-
    "k" (cons #\u265A (king-moves 'black))
    "q" (cons #\u265B (queen-moves 'black))
    "r" (cons #\u265C (rook-moves 'black))
    "b" (cons #\u265D (bishop-moves 'black))
    "n" (cons #\u265E (knight-moves 'black))
    "p" (cons #\u265F (pawn-moves 'black))))
-
-(define (print-board board)
-  (for ([rank (in-range 8)])
-    (for ([file (in-range 8)])
-      (define location (rank-file->location rank file))
-      (define piece (send board piece-at-location location))
-      (printf "~A"
-              (if piece
-                  (send piece get-glyph)
-                  (if (or (and (odd? rank)  (even? file))
-                          (and (even? rank) (odd? file)))
-                      #\u25A0
-                      #\u25A1))))
-    (printf "~%")))
