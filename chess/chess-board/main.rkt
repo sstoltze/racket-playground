@@ -43,7 +43,12 @@
   (class new-%
     (super-new)
 
+    (init-field [turn 'white])
+
     (define pieces '())
+
+    (define/public (end-turn)
+      (set! turn (if (eq? turn 'white) 'black 'white)))
 
     (define/augment (after-insert chess-piece . args)
       (set! pieces (cons chess-piece pieces)))

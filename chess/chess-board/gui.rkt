@@ -1,7 +1,9 @@
 #lang racket
 (require racket/gui
          embedded-gui
-         "chess.rkt")
+         "main.rkt")
+(provide make-chess-board
+         make-chess-piece)
 
 ;; Snips need a class
 (define chess-piece-snip-class
@@ -55,6 +57,7 @@
 (define chess-board%
   (class (chess-board-mixin pasteboard%)
     (super-new)
+    (inherit-field turn)
 
     ;; Disable drag-select
     (send this set-area-selectable #f)
@@ -69,8 +72,6 @@
     ;; Locations to highlight
     (define valid-move-locations '())
     (define opponent-move-locations '())
-
-    (define turn 'white)
 
     (define/augment (can-interactive-move? event)
       (define piece (send this find-next-selected-snip #f))
@@ -165,7 +166,7 @@
             (send this remove target-piece)))
         ;; Update the piece position *after* possibly removing the old piece
         (send piece set-location location)
-        (set! turn (if (eq? turn 'white) 'black 'white)))
+        (send this end-turn))
       (position-piece this piece)
       (set! valid-move-locations (send piece valid-moves this))
       (send (send this get-canvas) refresh))
@@ -212,17 +213,6 @@
       (set! message m)
       (send message-timer start 2000)
       (send (send this get-canvas) refresh))))
-
-(define (make-chess-piece-snip id [location #f])
-  (match-define (cons glyph moves) (hash-ref chess-piece-data id))
-  (define font (send the-font-list find-or-create-font 20 'default 'normal 'normal))
-  (new chess-piece-snip%
-       [name id]
-       [glyph (string glyph)]
-       [font font]
-       [size 35]
-       [moves moves]
-       [location location]))
 
 (define (draw-chess-board dc)
   (define brush (send the-brush-list find-or-create-brush "gray" 'solid))
@@ -324,16 +314,29 @@
           (+ square-x (/ (- square-width piece-width) 2))
           (+ square-y (/ (- square-height piece-height) 2)))))
 
-(define board (new chess-board%))
-(define frame (new frame%
-                   [label "Chess Board"]
-                   [width (* 50 8)]
-                   [height (* 50 8)]))
-(define canvas (new editor-canvas%
-                    [parent frame]
-                    [style '(no-hscroll no-vscroll)]
-                    [horizontal-inset 0]
-                    [vertical-inset 0]
-                    [editor board]))
-(setup-board board initial-fen make-chess-piece-snip)
-(send frame show #t)
+(define (make-chess-piece id [location #f])
+  (match-define (cons glyph moves) (hash-ref chess-piece-data id))
+  (define font (send the-font-list find-or-create-font 20 'default 'normal 'normal))
+  (new chess-piece-snip%
+       [name id]
+       [glyph (string glyph)]
+       [font font]
+       [size 35]
+       [moves moves]
+       [location location]))
+
+(define (make-chess-board [fen-string initial-fen])
+  (define board (new chess-board%))
+  (define frame (new frame%
+                     [label  "Chess Board"]
+                     [width  (* 50 8)]
+                     [height (* 50 8)]))
+  (define canvas (new editor-canvas%
+                      [parent           frame]
+                      [style            '(no-hscroll no-vscroll)]
+                      [horizontal-inset 0]
+                      [vertical-inset   0]
+                      [editor           board]))
+  (setup-board board initial-fen make-chess-piece)
+  (send frame show #t)
+  board)
