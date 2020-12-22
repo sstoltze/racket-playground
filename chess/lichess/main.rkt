@@ -1,6 +1,7 @@
 #lang racket
 (require net/url
-         json)
+         json
+         chess-board/simple)
 
 (define token (file->string ".token"))
 (define header (list (format "Authorization: Bearer ~A" token)))
@@ -21,3 +22,6 @@
 
 (define (game-fen game)
   (hash-ref game 'fen))
+
+(define (print-game game)
+  (printf "~A~%" (make-chess-board (game-fen game))))
