@@ -159,15 +159,9 @@
       (define piece (send this find-next-selected-snip #f))
       (define location (xy->location this (send event get-x) (send event get-y)))
       (define valid-moves (send piece valid-moves this))
-      (when (member location valid-moves)
-        (let ([target-piece (send this piece-at-location location)])
-          (when (and target-piece
-                     (not (eq? target-piece piece)))
-            (send target-piece set-location #f)
-            (send this remove target-piece)))
-        ;; Update the piece position *after* possibly removing the old piece
-        (send piece set-location location)
-        (send this end-turn))
+      (define target-piece (send this move-piece-to piece location))
+      (when target-piece
+        (send this remove target-piece))
       (position-piece this piece)
       (set! valid-move-locations (send piece valid-moves this))
       (send (send this get-canvas) refresh))

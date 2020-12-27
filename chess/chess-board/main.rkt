@@ -30,6 +30,8 @@
 
     (define/public (get-glyph) glyph)
 
+    (define/public (get-name) name)
+
     (define/public (valid-moves board)
       (if location
           (moves board location)
@@ -66,6 +68,8 @@
 
     (define/public (get-pieces)
       pieces)
+    (define/public (get-turn)
+      turn)
 
     (define/public (piece-at-location location)
       (let ([ps (filter (lambda (p) (equal? (send p get-location) location))
@@ -81,6 +85,56 @@
        (for/fold ([moves '()])
                  ([piece (in-list opponent-pieces)])
          (append (send piece valid-moves this) moves))))
+
+    (define/public (can-move-to location [colour turn])
+      (define can-move-to-location? (lambda (piece)
+                                      (and (if colour
+                                               (equal? colour (send piece get-colour))
+                                               #t)
+                                           (member location (send piece valid-moves this)))))
+      (filter can-move-to-location? pieces))
+
+    (define/public (move-piece-to piece location)
+      (define valid-moves (send piece valid-moves this))
+      (if (member location valid-moves)
+          (let ([target-piece (send this piece-at-location location)])
+            (when (and target-piece
+                       (not (eq? target-piece piece)))
+              (send target-piece set-location #f))
+            ;; Update the piece position *after* possibly removing the old piece
+            (send piece set-location location)
+            (send this end-turn)
+            target-piece)
+          #f))
+
+    (define (turn-name name)
+      (if (eq? turn 'white)
+          (string-upcase name)
+          (string-downcase name)))
+
+    (define/public (make-move algebraic-notation)
+      (define len          (string-length algebraic-notation))
+      (define location     (substring algebraic-notation (- len 2) len))
+      (define non-location (substring algebraic-notation 0 (- len 2)))
+      (define piece-name   (if (or (= (string-length non-location) 0)
+                                   (member (string-ref non-location 0)
+                                           '(#\a #\b #\c #\d #\e #\f #\g #\h)))
+                               (turn-name "p")
+                               (string (string-ref non-location 0))))
+      (define pred?        (lambda (piece)
+                             (and (member location (send piece valid-moves this))
+                                  (equal? piece-name (send piece get-name)))))
+      (define pieces       (filter pred? (send this can-move-to location)))
+      (when (= (length pieces) 1)
+        (send this move-piece-to (car pieces) location)))
+
+    (define/public (make-moves moves)
+      (define old-turn 'undefined)
+      (for/list ([move (in-list moves)])
+        (set! old-turn turn)
+        (send this make-move move)
+        #:break (equal? old-turn turn)
+        move))
 
     (define black-square #\u25A0)
     (define white-square #\u25A1)
