@@ -1,10 +1,8 @@
 #lang racket/base
 ;; All pure chess-piece logic goes here
 (require racket/class
-         racket/format
          racket/list
-         racket/string
-         racket/match)
+         racket/string)
 (provide chess-piece-mixin
          chess-board-mixin
          location->rank-file
@@ -38,11 +36,11 @@
           '()))
 
     (define/public (custom-print port quoting-depth)
-      (print (~a glyph) port))
+      (print (format "~A" glyph) port))
     (define/public (custom-write port)
-      (write (~a glyph) port))
+      (write (format "~A" glyph) port))
     (define/public (custom-display port)
-      (display (~a glyph) port))))
+      (display (format "~A" glyph) port))))
 
 (define (chess-board-mixin %)
   (define new-% (if (method-in-interface? 'insert (class->interface %))
@@ -251,8 +249,8 @@
   (define-values (rank file) (location->rank-file location))
   (for/fold ([moves '()])
             ([offset (in-list offsets)])
-    (match-define (list roffset foffset) offset)
-    (define-values (nrank nfile) (values (+ rank roffset) (+ file foffset)))
+    (define-values (rank-offset file-offset) (apply values offset))
+    (define-values (nrank nfile) (values (+ rank rank-offset) (+ file file-offset)))
     (if (and (valid-rank? nrank) (valid-file? nfile))
         (let ((candidate (rank-file->location nrank nfile)))
           (let ((piece (send board piece-at-location candidate)))
