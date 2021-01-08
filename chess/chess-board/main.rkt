@@ -11,7 +11,9 @@
          chess-piece-data
          initial-fen
          initial-pieces
-         setup-board)
+         setup-board
+         chess960-fen-string
+         chess960-string?)
 
 (define (chess-piece-mixin %)
   (class* % (printable<%>)
@@ -207,6 +209,31 @@
 (define (setup-board board fen-string chess-piece-constructor)
   (for ([piece (in-list (fen-string->pieces fen-string))])
     (send board insert (apply chess-piece-constructor piece))))
+
+(define (chess960-list? l)
+  (define king (index-of l #\k))
+  (define rooks (indexes-of l #\r))
+  (define bishops (indexes-of l #\b))
+  (and (< (first rooks) king (second rooks))
+       (not (= (modulo (first bishops) 2) (modulo (second bishops) 2)))))
+
+(define (chess960-string? s)
+  (chess960-list? (string->list s)))
+
+(define (chess960-fen-string)
+  (define all-possibilities (filter chess960-list?
+                                    (permutations '(#\r #\n #\b #\q #\k #\b #\n #\r))))
+  (define piece-string (list->string (list-ref all-possibilities (random (length all-possibilities)))))
+  (define pawn-string "pppppppp")
+  (string-join (list piece-string
+                     pawn-string
+                     "8"
+                     "8"
+                     "8"
+                     "8"
+                     (string-upcase pawn-string)
+                     (string-upcase piece-string))
+               "/"))
 
 (define initial-fen "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR")
 (define initial-pieces (fen-string->pieces initial-fen))
