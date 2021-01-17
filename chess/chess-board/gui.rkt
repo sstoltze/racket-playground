@@ -4,6 +4,7 @@
          "main.rkt")
 (provide (all-from-out "main.rkt")
          make-chess-board
+         make-chess960-board
          make-chess-piece)
 
 ;; Snips need a class
@@ -335,3 +336,6 @@
   (setup-board board initial-fen make-chess-piece)
   (send frame show #t)
   board)
+
+(define (make-chess960-board)
+  (make-chess-board (chess960-fen-string)))

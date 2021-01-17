@@ -1,6 +1,7 @@
-#lang racket
+#lang racket/base
 (require net/url
          json
+         racket/file
          chess-board/simple)
 
 (define token (file->string ".token"))
