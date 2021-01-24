@@ -1,0 +1,6 @@
+#+AUTHOR: Simon Stoltze
+#+EMAIL: sstoltze@gmail.com
+#+DATE: 2021-01-24
+#+OPTIONS: toc:nil title:nil author:nil email:nil date:nil creator:nil
+* Gherkin
+This is mostly just to play around. Loosely based on the Haskell tutorial [[https://mmhaskell.com/parsing/gherkin][here]].
