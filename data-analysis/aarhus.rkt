@@ -1,9 +1,9 @@
 #lang racket
 (require plot
-         "statistikdistrikter.rkt"
-         "toiletter.rkt"
+         "visualisation/statistikdistrikter.rkt"
+         "visualisation/toiletter.rkt"
          "traffic.rkt"
-         "wifi.rkt")
+         "visualisation/wifi.rkt")
 
 (define kommune-renderers (append (toiletter-renderers)
                                   (statistikdistrikter-renderers)))

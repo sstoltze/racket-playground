@@ -1,5 +1,6 @@
 #lang racket
-(require plot)
+(require plot
+         racket/runtime-path)
 
 (provide wifi-renderers)
 
@@ -9,8 +10,10 @@
   (list (string->number (list-ref fields (- len 1)))
         (string->number (list-ref fields (- len 2)))))
 
+(define-runtime-path wifi-csv "wifi.csv")
+
 (define wifi-csv-points
-  (call-with-input-file "./wifi.csv"
+  (call-with-input-file wifi-csv
     (lambda (s)
       (define content (port->string s))
       (define lines (rest (string-split content "\n")))
