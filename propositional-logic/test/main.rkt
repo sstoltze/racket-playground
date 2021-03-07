@@ -11,6 +11,7 @@
 (string->proposition "~P ^ Q v P -> P v Q")
 
 (string->proposition "(~P v P) ^ QB")
+(satisfy (string->proposition "(~P v P) ^ QB"))
 
 (string->proposition "Q -> A v B ^ C")
 
