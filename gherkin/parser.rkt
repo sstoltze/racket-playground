@@ -29,8 +29,8 @@ when : WHEN [/NEWLINE and]
 then : THEN [/NEWLINE and]
 and : AND [/NEWLINE and]
 background : BACKGROUND /NEWLINE [given] /NEWLINE [examples]
-examples : EXAMPLES /NEWLINE variable-names /NEWLINE variable-values
+examples : EXAMPLES /NEWLINE variable-names /NEWLINE variable-values*
 variable-names : (/SEPARATOR variable)* /SEPARATOR
-variable-values : (/SEPARATOR value)* /SEPARATOR [/NEWLINE variable-values]
+variable-values : (/SEPARATOR value)* /SEPARATOR [/NEWLINE]
 variable : STRING+
 value : (STRING | INTEGER)+
