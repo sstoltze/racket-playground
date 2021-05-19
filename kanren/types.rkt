@@ -1,25 +1,30 @@
 #lang racket/base
-
 ;; The idea of this file is to provide everything implementation specifiv for vars, bindings and the state,
 ;; so these can be switched out and tinkered with if needed
 
-(provide (all-defined-out))
-
-(require racket/match)
+(require 'kanren-var)
+(provide (all-from-out 'kanren-var))
+(require 'kanren-binding)
+(provide (all-from-out 'kanren-binding))
+(require 'kanren-state)
+(provide (all-from-out 'kanren-state))
+(require 'kanren-stream)
+(provide (all-from-out 'kanren-stream))
 
 ;;;; Vars
-(struct LVar (id) #:transparent)
+(module kanren-var racket/base
+  (provide (all-defined-out))
+  (struct LVar (id) #:transparent)
 
-(define var? LVar?)
+  (define var? LVar?)
 
-(define (var id)
-  (LVar id))
+  (define (var id)
+    (LVar id))
 
-(define var=? equal?)
-(define var-id LVar-id)
+  (define var=? equal?)
+  (define var-id LVar-id))
 
 ;;;; Bindings
-;; Lists
 (module binding-alist racket/base
   (provide (all-defined-out))
   (define empty-bindings (list))
@@ -34,7 +39,6 @@
 
 (module binding-hash racket/base
   (provide (all-defined-out))
-  (require racket/hash)
   (define empty-bindings (hash))
 
   (define (extend-bindings bindings x v)
@@ -46,49 +50,56 @@
 
   (define has-binding? hash-has-key?))
 
-(require 'binding-hash)
-(provide (all-from-out 'binding-hash))
+(module kanren-binding racket/base
+  (provide (all-defined-out))
+  (require (submod ".." binding-hash))
+  (provide (all-from-out (submod ".." binding-hash)))
+  #;(require 'binding-alist)
+  #;(provide (all-from-out 'binding-alist))
 
-#;(require 'binding-alist)
-#;(provide (all-from-out 'binding-alist))
-
-;; A binding is a cons pair
-(define binding? pair?)
-(define binding-var car)
-(define binding-value cdr)
+  ;; A binding is a cons pair
+  (define binding? pair?)
+  (define binding-var car)
+  (define binding-value cdr))
 
 ;;;; State
-(struct KanrenState (bindings next-id) #:transparent)
+(module kanren-state racket/base
+  (provide (all-defined-out))
+  (require (submod ".." kanren-binding))
+  (require (submod ".." kanren-var))
+  (struct KanrenState (bindings next-id) #:transparent)
 
-(define empty-state (KanrenState empty-bindings 0))
+  (define empty-state (KanrenState empty-bindings 0))
 
-(define (extend-state state x v)
-  (KanrenState (extend-bindings (KanrenState-bindings state) x v)
-               (KanrenState-next-id state)))
+  (define (extend-state state x v)
+    (KanrenState (extend-bindings (KanrenState-bindings state) x v)
+                 (KanrenState-next-id state)))
 
-(define (fresh-var state)
-  (values (var (KanrenState-next-id state))
-          (KanrenState (KanrenState-bindings state)
-                       (add1 (KanrenState-next-id state)))))
+  (define (fresh-var state)
+    (values (var (KanrenState-next-id state))
+            (KanrenState (KanrenState-bindings state)
+                         (add1 (KanrenState-next-id state)))))
 
-(define (lookup-state s x)
-  (lookup-binding (KanrenState-bindings s) x))
+  (define (lookup-state s x)
+    (lookup-binding (KanrenState-bindings s) x))
 
-(define (state-vars s)
-  (for/list [(i (in-range (KanrenState-next-id s)))]
-    (var i)))
+  (define (state-vars s)
+    (for/list [(i (in-range (KanrenState-next-id s)))]
+      (var i))))
 
 ;;;; Streams
-(define (unit s)
-  (stream-add s mzero))
+(module kanren-stream racket/base
+  (provide (all-defined-out))
+  (define (unit s)
+    (stream-add s mzero))
 
-(define mzero '())
-(define stream-empty? null?)
-(define stream-immature? procedure?)
-(define (stream-realize stream)
-  (if (stream-immature? stream)
-      (stream)
-      stream))
-(define stream-first car)
-(define stream-rest cdr)
-(define stream-add cons)
+  (define mzero '())
+  (define stream-empty? null?)
+  (define stream-immature? procedure?)
+  (define (stream-realize stream)
+    (if (stream-immature? stream)
+        (stream)
+        stream))
+  (define stream-first car)
+  (define stream-rest cdr)
+  (define stream-add cons))
