@@ -2,15 +2,6 @@
 ;; The idea of this file is to provide everything implementation specifiv for vars, bindings and the state,
 ;; so these can be switched out and tinkered with if needed
 
-(require 'kanren-var)
-(provide (all-from-out 'kanren-var))
-(require 'kanren-binding)
-(provide (all-from-out 'kanren-binding))
-(require 'kanren-state)
-(provide (all-from-out 'kanren-state))
-(require 'kanren-stream)
-(provide (all-from-out 'kanren-stream))
-
 ;;;; Vars
 (module kanren-var racket/base
   (provide (all-defined-out))
@@ -23,6 +14,9 @@
 
   (define var=? equal?)
   (define var-id LVar-id))
+
+(require 'kanren-var)
+(provide (all-from-out 'kanren-var))
 
 ;;;; Bindings
 (module binding-alist racket/base
@@ -62,6 +56,9 @@
   (define binding-var car)
   (define binding-value cdr))
 
+(require 'kanren-binding)
+(provide (all-from-out 'kanren-binding))
+
 ;;;; State
 (module kanren-state racket/base
   (provide (all-defined-out))
@@ -87,6 +84,9 @@
     (for/list [(i (in-range (KanrenState-next-id s)))]
       (var i))))
 
+(require 'kanren-state)
+(provide (all-from-out 'kanren-state))
+
 ;;;; Streams
 (module kanren-stream racket/base
   (provide (all-defined-out))
@@ -103,3 +103,6 @@
   (define stream-first car)
   (define stream-rest cdr)
   (define stream-add cons))
+
+(require 'kanren-stream)
+(provide (all-from-out 'kanren-stream))
