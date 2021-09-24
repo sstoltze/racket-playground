@@ -4,18 +4,22 @@
          racket/file
          chess-board/simple)
 
+(define base-url (string->url "https://lichess.org"))
 (define token (file->string ".token"))
 (define header (list (format "Authorization: Bearer ~A" token)))
 
 (define (lichess-url [path #f])
-  (combine-url/relative (string->url "https://lichess.org")
+  (combine-url/relative base-url
                         (apply string-append "/api/account" (if path
                                                                 (list "/" path)
                                                                 '("")))))
 
+(define (lichess-json lichess-url)
+  (read-json (get-pure-port lichess-url
+                            header)))
+
 (define (ongoing-games)
-  (hash-ref (read-json (get-pure-port (lichess-url "playing")
-                                      header))
+  (hash-ref (lichess-json (lichess-url "playing"))
             'nowPlaying))
 
 (define (my-turn? game)
