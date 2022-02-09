@@ -1,5 +1,5 @@
-#+AUTHOR: Simon Stoltze
-#+EMAIL: Simon.Stoltze@ufst.dk
+#+AUTHOR: Sarah Stoltze
+#+EMAIL: sstoltze@gmail.com
 #+DATE: 2020-10-14
 #+OPTIONS: toc:nil title:nil author:nil email:nil date:nil creator:nil
 * Racket playground
