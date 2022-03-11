@@ -42,6 +42,8 @@
 
 (define prop1 (string->proposition "~(A v B)"))
 (define prop2 (string->proposition "~B ^ ~A"))
+(define prop3 (string->proposition "A v B"))
 (satisfy prop1)
 (satisfy prop2)
+(satisfy prop3)
 (equivalent-propositions? prop1 prop2)
