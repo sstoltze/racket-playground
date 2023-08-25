@@ -101,3 +101,11 @@
                  (conso f l-rest l)
                  (deleteo f o o-rest)
                  (permuteo l-rest o-rest))]))
+
+(define (mapo f xs ys)
+  (conde [(emptyo xs) (emptyo ys)]
+         [(fresh (x x-rest y y-rest)
+                 (conso x x-rest xs)
+                 (conso y y-rest ys)
+                 (congruent y (f x))
+                 (mapo f x-rest y-rest))]))

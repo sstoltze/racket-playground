@@ -98,3 +98,9 @@
 (define delete-test-2
   (run* (q)
         (deleteo 1 '(2 3 4) q)))
+
+(define map-test
+  (run* (q)
+        (mapo (lambda (x) (var (add1 (var-id x))))
+              '(1 2 3)
+              q)))
